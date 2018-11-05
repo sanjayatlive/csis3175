@@ -137,6 +137,7 @@ public  class Parser {
        // do something like setting recycler adapter
 
        Log.d("size","sizeofdataListParser" + dataList.size());
+
    }
 
 
