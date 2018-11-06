@@ -40,7 +40,7 @@ public class Volley {
 
                             //      list = parser.parseIt(response);
 
-
+                            progressDialog.dismiss();
                             dataList = Parser.parseIt(response.toString());
 
 
@@ -66,7 +66,7 @@ public class Volley {
                         }catch (Exception e){
                         }
 
-                        progressDialog.dismiss();
+
                     }
                 }, new Response.ErrorListener() {
             @Override
