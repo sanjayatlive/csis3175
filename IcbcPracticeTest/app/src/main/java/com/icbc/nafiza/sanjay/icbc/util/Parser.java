@@ -15,7 +15,7 @@ public  class Parser {
 
    public  static List<Item> dataList = new ArrayList<>();
 
-   public static void parseIt(String response) throws Exception
+   public static List<Item> parseIt(String response) throws Exception
    {
 
       String tag="";
@@ -133,10 +133,8 @@ public  class Parser {
 
       //  return list;
 
+return dataList;
 
-       // do something like setting recycler adapter
-
-       Log.d("size","sizeofdataListParser" + dataList.size());
 
    }
 

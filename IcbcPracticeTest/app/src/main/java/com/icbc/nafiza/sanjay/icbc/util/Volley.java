@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Volley {
-
+    static List<Item> dataList = new ArrayList<>();
     public static void fetchData(Context ctx)
     {
 
@@ -41,10 +41,15 @@ public class Volley {
                             //      list = parser.parseIt(response);
 
 
-                            Parser.parseIt(response.toString());
+                            dataList = Parser.parseIt(response.toString());
 
 
-                            Log.d("size","sizeofresponsevolley" + response.length());
+                         //   Log.d("size","sizeofresponsevolley" + response.length());
+
+                            // do something like setting recycler adapter
+
+                            Log.d("size","sizeofdataListFromVolley" + dataList.size());
+
 
 
                             //   parseIt(response.toString());
