@@ -16,10 +16,13 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.QuestionViewHolder> {
 List<Item> questionList;
 Context ctx;
+RecyclerView recyclerView;
 
-public RecyclerAdapter(List<Item> questionList, Context ctx){
+
+public RecyclerAdapter(List<Item> questionList, Context ctx, RecyclerView recyclerView){
     this.questionList = questionList;
     this.ctx = ctx;
+    this.recyclerView = recyclerView;
 }
 
     @NonNull
@@ -28,7 +31,7 @@ public RecyclerAdapter(List<Item> questionList, Context ctx){
 
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_layout,viewGroup,false);
 
-
+view.setOnClickListener(onClickListener);
         return new QuestionViewHolder(view);
     }
 
@@ -43,6 +46,14 @@ public RecyclerAdapter(List<Item> questionList, Context ctx){
     public int getItemCount() {
         return questionList.size();
     }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int itemPosition = recyclerView.getChildLayoutPosition(v);
+            System.out.println("<<<<<<<<<<<ItemPos>>>>>>>>" + itemPosition);
+        }
+    };
 
     public static class QuestionViewHolder extends RecyclerView.ViewHolder{
         TextView txtViewItem,txtViewItemId;

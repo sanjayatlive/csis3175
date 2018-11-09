@@ -125,6 +125,11 @@ public  class Parser {
                }
 
             }
+            else
+            {
+                Log.d("<<<<<<<othertags>>>>>" , tag);
+                System.out.println("<<<<<<<othertags>>>>>" + xpp.getText().trim());
+            }
 
          }
          eventType = xpp.next();

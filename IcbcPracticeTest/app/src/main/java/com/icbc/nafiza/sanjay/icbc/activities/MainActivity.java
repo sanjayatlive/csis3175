@@ -3,11 +3,13 @@ package com.icbc.nafiza.sanjay.icbc.activities;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -52,6 +54,9 @@ public class MainActivity  extends AppCompatActivity  {
 
 
         //  Log.d("sizeoflistmainactivity>",""+dataList.size());
+
+
+
 
     }
 

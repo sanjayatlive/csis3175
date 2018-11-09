@@ -95,7 +95,7 @@ public class Volley {
 
 public static void createRecyclerViewAndSetAdapter(Context ctx,RecyclerView recyclerView){
 
-    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList,ctx);
+    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList,ctx, recyclerView);
     recyclerView.setAdapter(recyclerAdapter);
 
 
