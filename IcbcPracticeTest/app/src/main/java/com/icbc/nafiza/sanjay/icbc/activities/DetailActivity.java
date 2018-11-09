@@ -1,5 +1,6 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
+import android.graphics.Typeface;
 import  android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,12 +26,15 @@ public class DetailActivity extends AppCompatActivity {
 
 
         TextView txtViewQuesDetail = (TextView) findViewById(R.id.txtViewQuesDetail);
-        final RadioGroup radGrpDetail = (RadioGroup) findViewById(R.id.radGrpDetail);
-        final RadioButton radBtnFirst = (RadioButton) findViewById(R.id.radBtnFirst);
+        RadioGroup radGrpDetail = (RadioGroup) findViewById(R.id.radGrpDetail);
+        RadioButton radBtnFirst = (RadioButton) findViewById(R.id.radBtnFirst);
         RadioButton radBtnSecond = (RadioButton) findViewById(R.id.radBtnSecond);
         RadioButton radBtnThird = (RadioButton) findViewById(R.id.radBtnThird);
         RadioButton radBtnFourth = (RadioButton) findViewById(R.id.radBtnFourth);
         final Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
+        final Button btnNext=(Button)findViewById(R.id.btnNext);
+
+        btnNext.setEnabled(false);
 
         txtViewQuesDetail.setText(getIntent().getStringExtra("question"));
 
@@ -47,6 +51,16 @@ public class DetailActivity extends AppCompatActivity {
         radBtnThird.setText(options.get(2));
         radBtnFourth.setText(options.get(3));
 
+       // Typeface font=getResources().getFont(R.font.myFont);
+        Typeface font=Typeface.SANS_SERIF;
+        radBtnFirst.setTypeface(font);
+        radBtnSecond.setTypeface(font);
+        radBtnThird.setTypeface(font);
+        radBtnFourth.setTypeface(font);
+        txtViewQuesDetail.setTypeface(font);
+        btnSubmit.setTypeface(font);
+        btnNext.setTypeface(font);
+
 
         radGrpDetail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -60,10 +74,15 @@ public class DetailActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailActivity.this, userChoice, Toast.LENGTH_SHORT).show();
+                if(userChoice!=null) {
+                    Toast.makeText(DetailActivity.this, userChoice, Toast.LENGTH_SHORT).show();
+                    btnNext.setEnabled(true);
+                }
+                else{
+                    Toast.makeText(DetailActivity.this, "Select atleast one option", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
 
     }
 }

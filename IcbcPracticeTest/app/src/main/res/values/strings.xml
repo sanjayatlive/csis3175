@@ -3,4 +3,5 @@
     <string name="txtTitle">Questions</string>
     <string name="txtQuestionNo">Question No</string>
     <string name="btnSubmit">SUBMIT</string>
+    <string name="btnNext">NEXT</string>
 </resources>
