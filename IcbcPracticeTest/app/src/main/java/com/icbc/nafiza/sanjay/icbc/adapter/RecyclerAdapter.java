@@ -1,6 +1,7 @@
 package com.icbc.nafiza.sanjay.icbc.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.activities.DetailActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
 import java.util.List;
@@ -51,7 +53,14 @@ view.setOnClickListener(onClickListener);
         @Override
         public void onClick(View v) {
             int itemPosition = recyclerView.getChildLayoutPosition(v);
-            System.out.println("<<<<<<<<<<<ItemPos>>>>>>>>" + itemPosition);
+            Intent intent = new Intent(ctx, DetailActivity.class);
+            intent.putExtra("question", questionList.get(itemPosition).getQuestion());
+            intent.putExtra("answer", questionList.get(itemPosition).getAnswer());
+            intent.putExtra("dist1", questionList.get(itemPosition).getDistractor1());
+            intent.putExtra("dist2", questionList.get(itemPosition).getDistractor2());
+            intent.putExtra("dist3", questionList.get(itemPosition).getDistractor3());
+            ctx.startActivity(intent);
+            //System.out.println("<<<<<<<<<<<ItemPos>>>>>>>>" + itemPosition);
         }
     };
 
