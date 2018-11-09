@@ -2,6 +2,7 @@ package com.icbc.nafiza.sanjay.icbc.util;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -9,6 +10,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.icbc.nafiza.sanjay.icbc.adapter.RecyclerAdapter;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
 import java.util.ArrayList;
@@ -16,8 +18,11 @@ import java.util.List;
 
 public class Volley {
     static List<Item> dataList = new ArrayList<>();
-    public static void fetchData(Context ctx)
+
+    //RecyclerView recyclerView;
+    public static void fetchData(final Context ctx, final RecyclerView recyclerView)
     {
+
 
         // final Parser parser = new Parser();
 
@@ -42,6 +47,7 @@ public class Volley {
 
                             progressDialog.dismiss();
                             dataList = Parser.parseIt(response.toString());
+                            createRecyclerViewAndSetAdapter(ctx,recyclerView);
 
 
                          //   Log.d("size","sizeofresponsevolley" + response.length());
@@ -87,7 +93,13 @@ public class Volley {
     }
 
 
+public static void createRecyclerViewAndSetAdapter(Context ctx,RecyclerView recyclerView){
 
+    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList,ctx);
+    recyclerView.setAdapter(recyclerAdapter);
+
+
+    }
 
 }
 

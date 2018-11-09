@@ -81,7 +81,7 @@ public  class Parser {
                if(xpp.getText().toString().trim().length()!=0)
                {
                   //  System.out.println(">>>>>>>insideqs" + xpp.getText().toString());
-                  item.setQuestion(xpp.getText());
+                  item.setQuestion(xpp.getText().trim());
                }
 
 
@@ -93,7 +93,7 @@ public  class Parser {
                if(xpp.getText().toString().trim().length()!=0)
                {
                   //  System.out.println(">>>>>>>answer" + xpp.getText().toString());
-                  item.setAnswer(xpp.getText());
+                  item.setAnswer(xpp.getText().trim());
                }
 
 
@@ -101,7 +101,7 @@ public  class Parser {
             else if(tag.equals("distractor_1"))
             {
                if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor1(xpp.getText());
+                  item.setDistractor1(xpp.getText().trim());
 
                   // System.out.println(">>>>>>>distractor_1" + xpp.getText().toString());
                }
@@ -109,14 +109,14 @@ public  class Parser {
             else if(tag.equals("distractor_2"))
             {
                if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor2(xpp.getText());
+                  item.setDistractor2(xpp.getText().trim());
                }
 
             }
             else if(tag.equals("distractor_3"))
             {
                if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor3(xpp.getText());
+                  item.setDistractor3(xpp.getText().trim());
 
                   dataList.add(item);
                   id++;

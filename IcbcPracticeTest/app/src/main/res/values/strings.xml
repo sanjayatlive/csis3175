@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Icbc Practice Test</string>
+    <string name="txtTitle">Questions</string>
+    <string name="txtQuestionNo">Question No</string>
 </resources>
