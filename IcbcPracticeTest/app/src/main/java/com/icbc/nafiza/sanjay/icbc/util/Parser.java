@@ -68,7 +68,7 @@ public  class Parser {
             {
               // tag = xpp.getName().trim();
                 dataList.remove(dataList.size()-1);
-                id--;
+
             }
             else
             {
@@ -126,9 +126,9 @@ public  class Parser {
                   item.setDistractor3(xpp.getText().trim());
 
                   dataList.add(item);
-                  id++;
+                 // id++;
                   item = new Item();
-                  item.setId(id);
+                 // item.setId(id);
                }
 
             }
@@ -145,11 +145,19 @@ public  class Parser {
 
       //  return list;
 
+       setIds();
+
 return dataList;
 
 
    }
 
-
+public static void setIds()
+{
+    for(int i=0;i<dataList.size();i++)
+    {
+        dataList.get(i).setId(i);
+    }
+}
 
 }
