@@ -64,9 +64,16 @@ public  class Parser {
             else if(xpp.getName().trim().equalsIgnoreCase("distractor_3")){
                //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
                tag = "distractor_3";
-            }else
+            }else if(xpp.getName().trim().equalsIgnoreCase("image"))
             {
-               tag = "";
+              // tag = xpp.getName().trim();
+                dataList.remove(dataList.size()-1);
+                id--;
+            }
+            else
+            {
+                tag = xpp.getName().trim();
+                System.out.println("<<<<<<<othertags>>>>>" + tag);
             }
 
             //System.out.println("Start tag "+xpp.getName());
@@ -127,8 +134,8 @@ public  class Parser {
             }
             else
             {
-                Log.d("<<<<<<<othertags>>>>>" , tag);
-                System.out.println("<<<<<<<othertags>>>>>" + xpp.getText().trim());
+               // Log.d("<<<<<<<othertags>>>>>" , tag);
+              //  System.out.println("<<<<<<<othertags>>>>>" + tag);
             }
 
          }
