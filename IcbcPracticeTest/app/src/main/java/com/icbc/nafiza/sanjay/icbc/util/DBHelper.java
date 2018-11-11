@@ -60,10 +60,12 @@ public DBHelper(Context ctx){
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
 
-            Toast.makeText(ctx,"Tables Created", Toast.LENGTH_LONG).show();
+         //   Toast.makeText(ctx,"Tables Created", Toast.LENGTH_LONG).show();
 
         }catch (Exception e){
-            Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
+         //   Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
+            Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
+
         }
 
     }
@@ -86,12 +88,14 @@ public DBHelper(Context ctx){
 
             if(result==-1){
                 //    txtViewMessage.
-                Toast.makeText(ctx,"Questions couldn't be added", Toast.LENGTH_SHORT).show();
-               // Snackbar.make(Context.findViewById(R.id.constraint), "", Snackbar.LENGTH_LONG).show();
+           //     Toast.makeText(ctx,"Questions couldn't be added", Toast.LENGTH_SHORT).show();
+               Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Questions couldn't be added", Snackbar.LENGTH_LONG).show();
 
             }else
             {
-                Toast.makeText(ctx,"Questions added", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ctx,"Questions added", Toast.LENGTH_SHORT).show();
+                Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Questions added", Snackbar.LENGTH_LONG).show();
+
                 browseStudentRecs();
             }
 
