@@ -48,6 +48,7 @@ public class Volley {
                             progressDialog.dismiss();
                             dataList = Parser.parseIt(response.toString());
                             createRecyclerViewAndSetAdapter(ctx,recyclerView);
+                            DBHelper.addQuestionsToDB(dataList);
 
 
                          //   Log.d("size","sizeofresponsevolley" + response.length());

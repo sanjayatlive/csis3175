@@ -4,4 +4,6 @@
     <string name="txtQuestionNo">Question No</string>
     <string name="btnSubmit">SUBMIT</string>
     <string name="btnNext">NEXT</string>
+    <string name="dbName">ICBC</string>
+    <string name="dbVersion">1</string>
 </resources>
