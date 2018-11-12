@@ -6,9 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.design.widget.Snackbar;
+import android.view.GestureDetector;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.activities.DetailActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
@@ -68,7 +70,7 @@ public DBHelper(Context ctx){
                     "(userid numeric, username text, password text);";
 
             String createProgressTable = "CREATE TABLE PROGRESS " +
-                    "(userid numeric, questionid numeric, result boolean);";
+                    "(userid numeric, questionid numeric, status numeric);";
 
 
             db.execSQL(dropQuestionsTable);
@@ -161,6 +163,97 @@ public DBHelper(Context ctx){
         return dataList;
     }
 
+
+    public static void addResponseToDB(int questionId, int status)
+    {
+        try{
+            ContentValues cv;
+            long result=0;
+
+                cv = new ContentValues();
+                cv.put("userid", 0);
+                cv.put("questionid", questionId);
+                cv.put("status", status);
+
+                /*cv.put("questionid",dataList.get(i).getId());
+                cv.put("question",dataList.get(i).getQuestion());
+                cv.put("answer",dataList.get(i).getAnswer());
+                cv.put("distractor1",dataList.get(i).getDistractor1());
+                cv.put("distractor2",dataList.get(i).getDistractor2());
+                cv.put("distractor3",dataList.get(i).getDistractor3());*/
+                result = db.insert("PROGRESS", null, cv);
+
+            if(result==-1){
+                //    txtViewMessage.
+                     Toast.makeText(ctx,"Answer couldn't be submitted", Toast.LENGTH_SHORT).show();
+             //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
+
+            }else
+            {
+                 Toast.makeText(ctx,"Answer submitted successfully", Toast.LENGTH_SHORT).show();
+               // Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
+
+
+            }
+
+        }catch (Exception e){
+
+        }
+
+    }
+
+    public static int getResultFromDB(int questionId){
+
+    int status = 0;
+
+        String queryStr = "SELECT status FROM PROGRESS WHERE questionid = " + questionId + ";";
+
+        try{
+            Cursor cur = db.rawQuery(queryStr, null);
+
+
+
+            if(cur!=null)
+            {
+                cur.moveToFirst();
+                if(!cur.isAfterLast())
+                status = cur.getInt(0);
+            }
+        }catch (Exception e){
+            Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+return status;
+
+
+    }
+
+
+    public static int getScoreFromDB(int userId){
+          String queryStr="SELECT COUNT(*) count FROM PROGRESS WHERE status=1 and userid = 0;";
+
+          int count=0;
+
+
+        try{
+            Cursor cur = db.rawQuery(queryStr, null);
+
+
+
+            if(cur!=null)
+            {
+                cur.moveToFirst();
+                if(!cur.isAfterLast())
+                    count = cur.getInt(0);
+            }
+        }catch (Exception e){
+            Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
+        return count;
+    }
 
 
 }

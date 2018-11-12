@@ -13,4 +13,6 @@
     <string name="btnResChoice">START</string>
     <string name="txtViewWelcome"> WELCOME </string>
     <string name="txtViewTo"> TO </string>
+    <string name="btnClose">CLOSE</string>
+    <string name="txtViewResultText">Your Attempted Score Is</string>
 </resources>

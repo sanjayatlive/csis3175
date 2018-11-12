@@ -1,5 +1,6 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import  android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.bean.Item;
+import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
+import com.icbc.nafiza.sanjay.icbc.util.Parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +22,11 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     String userChoice;
-
+    Button btnNext;
+    Button btnSubmit;
+    RadioGroup radGrpDetail;
+    int questionId;
+    int status=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +34,33 @@ public class DetailActivity extends AppCompatActivity {
 
 
         TextView txtViewQuesDetail = (TextView) findViewById(R.id.txtViewQuesDetail);
-        RadioGroup radGrpDetail = (RadioGroup) findViewById(R.id.radGrpDetail);
+         radGrpDetail = (RadioGroup) findViewById(R.id.radGrpDetail);
         RadioButton radBtnFirst = (RadioButton) findViewById(R.id.radBtnFirst);
         RadioButton radBtnSecond = (RadioButton) findViewById(R.id.radBtnSecond);
         RadioButton radBtnThird = (RadioButton) findViewById(R.id.radBtnThird);
         RadioButton radBtnFourth = (RadioButton) findViewById(R.id.radBtnFourth);
-        final Button btnSubmit = (Button) findViewById(R.id.btnSubmit);
-        final Button btnNext=(Button)findViewById(R.id.btnNext);
+         btnSubmit = (Button) findViewById(R.id.btnSubmit);
+         btnNext=(Button)findViewById(R.id.btnNext);
 
-        btnNext.setEnabled(false);
+        btnNext.setVisibility(View.INVISIBLE);
 
-        txtViewQuesDetail.setText(getIntent().getStringExtra("question"));
+       // txtViewQuesDetail.setText(getIntent().getStringExtra("question"));
+
+         questionId = getIntent().getIntExtra("questionId",0);
+
+        txtViewQuesDetail.setText(Parser.dataList.get(questionId).getQuestion());
 
         List<String> options = new ArrayList<>();
-        options.add(getIntent().getStringExtra("answer"));
+        /*options.add(getIntent().getStringExtra("answer"));
         options.add(getIntent().getStringExtra("dist1"));
         options.add(getIntent().getStringExtra("dist2"));
-        options.add(getIntent().getStringExtra("dist3"));
+        options.add(getIntent().getStringExtra("dist3"));*/
+
+        options.add(Parser.dataList.get(questionId).getAnswer());
+        options.add(Parser.dataList.get(questionId).getDistractor1());
+        options.add(Parser.dataList.get(questionId).getDistractor2());
+        options.add(Parser.dataList.get(questionId).getDistractor3());
+
 
         Collections.shuffle(options);
 
@@ -62,21 +80,58 @@ public class DetailActivity extends AppCompatActivity {
         btnNext.setTypeface(font);
 
 
+
+        status = DBHelper.getResultFromDB(questionId);
+
+        if(status!=0)
+        {
+            btnNext.setVisibility(View.VISIBLE);
+            btnSubmit.setVisibility(View.INVISIBLE);
+        }
+
+        System.out.println("<<<<<<<<<<<InDetailOnC>>>>>>>>>>" + questionId + " " + Parser.dataList.size());
+        if(questionId>= Parser.dataList.size()-1){
+            btnNext.setText(getResources().getString(R.string.btnClose));
+        }
+
+        addListener();
+
+    }
+
+
+    public void addListener()
+    {
+
         radGrpDetail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 int radChkID = radioGroup.getCheckedRadioButtonId();
                 RadioButton selected = (RadioButton) findViewById(radChkID);
                 userChoice = selected.getText().toString();
+
+
             }
         });
+
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(userChoice!=null) {
-                    Toast.makeText(DetailActivity.this, userChoice, Toast.LENGTH_SHORT).show();
-                    btnNext.setEnabled(true);
+                  //  Toast.makeText(DetailActivity.this, userChoice, Toast.LENGTH_SHORT).show();
+                    //btnNext.setEnabled(true);
+                    btnNext.setVisibility(View.VISIBLE);
+                    btnSubmit.setVisibility(View.INVISIBLE);
+
+                    if(userChoice.equals(Parser.dataList.get(questionId).getAnswer()))
+                        status = 1;
+                    else
+                        status = -1;
+
+                    DBHelper.addResponseToDB(questionId, status);
+
+                    System.out.println("wow" + Parser.dataList.get(0).getAnswer());
+
                 }
                 else{
                     Toast.makeText(DetailActivity.this, "Select atleast one option", Toast.LENGTH_SHORT).show();
@@ -84,5 +139,28 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(questionId<Parser.dataList.size()-1){
+                    Intent intent = new Intent(DetailActivity.this, DetailActivity.class);
+
+                    intent.putExtra("questionId", questionId+1);
+
+                    startActivity(intent);
+                }
+
+
+                finish();
+
+
+
+
+            }
+        });
     }
+
 }

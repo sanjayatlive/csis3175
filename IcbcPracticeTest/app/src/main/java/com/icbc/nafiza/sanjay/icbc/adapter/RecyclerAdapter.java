@@ -54,11 +54,15 @@ view.setOnClickListener(onClickListener);
         public void onClick(View v) {
             int itemPosition = recyclerView.getChildLayoutPosition(v);
             Intent intent = new Intent(ctx, DetailActivity.class);
-            intent.putExtra("question", questionList.get(itemPosition).getQuestion());
+
+            /*intent.putExtra("question", questionList.get(itemPosition).getQuestion());
             intent.putExtra("answer", questionList.get(itemPosition).getAnswer());
             intent.putExtra("dist1", questionList.get(itemPosition).getDistractor1());
             intent.putExtra("dist2", questionList.get(itemPosition).getDistractor2());
             intent.putExtra("dist3", questionList.get(itemPosition).getDistractor3());
+*/
+            intent.putExtra("questionId", questionList.get(itemPosition).getId());
+
             ctx.startActivity(intent);
             //System.out.println("<<<<<<<<<<<ItemPos>>>>>>>>" + itemPosition);
         }

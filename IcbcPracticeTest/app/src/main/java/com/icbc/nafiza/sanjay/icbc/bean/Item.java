@@ -10,7 +10,7 @@ public class Item {
 
     String question,answer,distractor1,distractor2,distractor3;
 
-    int id;
+    int id, status;
 
 
     public int getId() {
@@ -59,5 +59,13 @@ public class Item {
 
     public void setDistractor3(String distractor3) {
         this.distractor3 = distractor3;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
