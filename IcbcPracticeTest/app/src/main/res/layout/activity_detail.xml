@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.DetailActivity">
 
     <TextView
         android:id="@+id/txtViewQuesDetail"
+        android:background="@color/colorPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -22,6 +24,7 @@
         app:layout_constraintVertical_bias="0.110000014" />
 
     <RadioGroup
+        android:background="@drawable/comp_bg"
         android:id="@+id/radGrpDetail"
         android:layout_width="0dp"
         android:layout_height="258dp"
@@ -63,6 +66,7 @@
 
     <Button
         android:id="@+id/btnSubmit"
+        android:background="@drawable/button_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -77,6 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radGrpDetail" />
 
     <Button
+        android:background="@drawable/button_bg"
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
