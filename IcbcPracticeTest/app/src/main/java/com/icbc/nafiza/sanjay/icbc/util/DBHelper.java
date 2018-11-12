@@ -12,6 +12,7 @@ import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -21,6 +22,16 @@ static SQLiteDatabase db;
 static Context ctx;
 
 public DBHelper(Context ctx){
+  /*  SQLiteDatabase.OpenParams.Builder builder = new SQLiteDatabase.OpenParams.Builder();
+    builder.addOpenFlags(SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+
+    SQLiteDatabase.OpenParams openParams = new SQLiteDatabase.OpenParams();
+
+   // SQLiteDatabase.OpenParams.Builder
+    super(ctx, ctx.getResources().getString(R.string.dbName)
+            , Integer.parseInt(ctx.getResources().getString(R.string.dbVersion))
+    , );*/
+
 
     super(ctx, ctx.getResources().getString(R.string.dbName), null, Integer.parseInt(ctx.getResources().getString(R.string.dbVersion)));
     //setOpenParams();
@@ -40,6 +51,7 @@ public DBHelper(Context ctx){
     public void createTables(){
 
     db = getReadableDatabase();
+
         try{
 
             String dropQuestionsTable = "DROP TABLE IF EXISTS QUESTIONS";
@@ -103,15 +115,20 @@ public DBHelper(Context ctx){
                // Toast.makeText(ctx,"Questions added", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Questions added", Snackbar.LENGTH_LONG).show();
 
-                getQuestionsFromDB();
+
             }
 
         }catch (Exception e){
 
         }
+
     }
 
-    public static void getQuestionsFromDB(){
+    public static List<Item>  getQuestionsFromDB(){
+
+        List<Item> dataList = new ArrayList<>();
+        Item item;
+
         String queryStr = "SELECT * FROM QUESTIONS;";
         try{
             Cursor cur = db.rawQuery(queryStr, null);
@@ -121,6 +138,15 @@ public DBHelper(Context ctx){
             {
                 cur.moveToFirst();
                 while(!cur.isAfterLast()){
+                    item = new Item();
+                    item.setId(cur.getInt(0));
+                    item.setQuestion(cur.getString(1));
+                    item.setAnswer(cur.getString(2));
+                    item.setDistractor1(cur.getString(3));
+                    item.setDistractor2(cur.getString(4));
+                    item.setDistractor3(cur.getString(5));
+                    dataList.add(item);
+
                     System.out.println("<<<<QUESTIONS>>>>" + cur.getInt(0) +
                     " " + cur.getString(1) + " " + cur.getString(2) + " " +
                             cur.getString(3) + " " + cur.getString(4) + " "
@@ -132,6 +158,7 @@ public DBHelper(Context ctx){
             Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_SHORT).show();
 
         }
+        return dataList;
     }
 
 

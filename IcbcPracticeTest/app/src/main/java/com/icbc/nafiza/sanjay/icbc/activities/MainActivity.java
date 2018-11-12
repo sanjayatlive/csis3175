@@ -1,7 +1,10 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,6 +14,7 @@ import android.view.View;
 
 import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.adapter.ItemDivider;
+import com.icbc.nafiza.sanjay.icbc.adapter.RecyclerAdapter;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
 import com.icbc.nafiza.sanjay.icbc.util.Volley;
@@ -23,6 +27,9 @@ public class MainActivity  extends AppCompatActivity  {
     String responseglobal = "";
     Snackbar snackBar;
     RecyclerView recyclerView;
+    DBHelper dbHelper;
+    SharedPreferences pref ;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +46,28 @@ public class MainActivity  extends AppCompatActivity  {
 
         recyclerView.addItemDecoration(new ItemDivider(this, LinearLayoutManager.VERTICAL, 16));
 
+         dbHelper = new DBHelper(this);
 
 
-doStuff();
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+      //  editor = pref.edit();
+
+        int choice = pref.getInt("choice",0);
+
+        if(choice==0) {
+            dbHelper.createTables();
+            getDataFromNetwork();
+        }else {
+            getDataFromDB();
+            createRecyclerViewAndSetAdapter(recyclerView);
+        }
+
+
+
 
     }
 
-    public void doStuff()
+    public void getDataFromNetwork()
     {
         try {
             if(true) {
@@ -57,8 +79,7 @@ doStuff();
 
                 }
 
-                DBHelper dbHelper = new DBHelper(this);
-                dbHelper.createTables();
+
 
 
 
@@ -85,7 +106,7 @@ doStuff();
         @Override
         public void onClick(View v) {
 
-            doStuff();
+            getDataFromNetwork();
             // Code to undo the user's last action
         }
     }
@@ -96,7 +117,21 @@ doStuff();
         return Runtime.getRuntime().exec(command).waitFor() == 0;
     }
 
+    public void getDataFromDB()
+    {
 
+        dataList = DBHelper.getQuestionsFromDB();
+        System.out.println("sizefrogetDataFromDB" + dataList.size());
+
+    }
+
+    public  void createRecyclerViewAndSetAdapter(RecyclerView recyclerView){
+
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList,this, recyclerView);
+        recyclerView.setAdapter(recyclerAdapter);
+
+
+    }
 
 }
 
