@@ -46,24 +46,17 @@ public DBHelper(Context ctx){
 
             String dropProgressTable = "DROP TABLE IF EXISTS PROGRESS";
 
-            String dropUsersTable = "DROP TABLE IF EXISTS USERS";
-
 
             String createQuestionsTable = "CREATE TABLE QUESTIONS " +
-                    "(questionid numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
-
-            String createUsersTable = "CREATE TABLE USERS " +
-                    "(userid numeric, username text, password text);";
+                    "(id numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
 
             String createProgressTable = "CREATE TABLE PROGRESS " +
-                    "(userid numeric, questionid numeric, result boolean);";
+                    "(id numeric,attempt boolean, correct boolean);";
 
 
             db.execSQL(dropQuestionsTable);
             db.execSQL(dropProgressTable);
-            db.execSQL(dropUsersTable);
 
-            db.execSQL(createUsersTable);
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
 
@@ -84,7 +77,7 @@ public DBHelper(Context ctx){
             long result=0;
             for(int i=0;i<dataList.size();i++){
                cv = new ContentValues();
-                cv.put("questionid",dataList.get(i).getId());
+                cv.put("id",dataList.get(i).getId());
                 cv.put("question",dataList.get(i).getQuestion());
                 cv.put("answer",dataList.get(i).getAnswer());
                 cv.put("distractor1",dataList.get(i).getDistractor1());
@@ -103,7 +96,7 @@ public DBHelper(Context ctx){
                // Toast.makeText(ctx,"Questions added", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Questions added", Snackbar.LENGTH_LONG).show();
 
-                getQuestionsFromDB();
+                browseStudentRecs();
             }
 
         }catch (Exception e){
@@ -111,7 +104,7 @@ public DBHelper(Context ctx){
         }
     }
 
-    public static void getQuestionsFromDB(){
+    public static void browseStudentRecs(){
         String queryStr = "SELECT * FROM QUESTIONS;";
         try{
             Cursor cur = db.rawQuery(queryStr, null);

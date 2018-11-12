@@ -48,7 +48,7 @@ doStuff();
     public void doStuff()
     {
         try {
-            if(true) {
+            if(isConnected()) {
 
                 try {
                     Volley.fetchData(this, recyclerView);

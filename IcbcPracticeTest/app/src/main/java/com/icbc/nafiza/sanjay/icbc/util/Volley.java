@@ -45,11 +45,11 @@ public class Volley {
 
                             //      list = parser.parseIt(response);
 
-
+                            progressDialog.dismiss();
                             dataList = Parser.parseIt(response.toString());
                             createRecyclerViewAndSetAdapter(ctx,recyclerView);
                             DBHelper.addQuestionsToDB(dataList);
-                            progressDialog.dismiss();
+
 
                          //   Log.d("size","sizeofresponsevolley" + response.length());
 

@@ -6,11 +6,4 @@
     <string name="btnNext">NEXT</string>
     <string name="dbName">ICBC</string>
     <string name="dbVersion">1</string>
-    <string name="txtViewAppTitle"> ICBC PRACTICE TEST </string>
-    <string name="txtViewOptions">Select Resource For Practice Test</string>
-    <string name="radBtnDatabase">Database</string>
-    <string name="radBtnNetwork">Website</string>
-    <string name="btnResChoice">START</string>
-    <string name="txtViewWelcome"> WELCOME </string>
-    <string name="txtViewTo"> TO </string>
 </resources>
