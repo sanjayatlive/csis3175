@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryLight"
     android:id="@+id/constraintLayout"
 
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.DetailActivity">
 
     <TextView
         android:id="@+id/txtViewQuesDetail"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/comp_bg"
+        android:textColor="@color/colorAccent"
+        android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -24,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.110000014"
-        android:textColor="#FFFFFF"/>
+        />
 
     <RadioGroup
         android:background="@drawable/comp_bg"
@@ -46,28 +48,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/radBtnSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/radBtnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/colorAccent"/>
 
         <RadioButton
             android:id="@+id/radBtnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="#FFFFFF"/>
+            android:textColor="@color/colorAccent"/>
 
     </RadioGroup>
 
@@ -89,8 +91,11 @@
         android:textColor="#FFFFFF"/>
 
     <Button
-        android:background="@drawable/button_bg"
         android:id="@+id/btnNext"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:elevation="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -103,6 +108,6 @@
         app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="@+id/btnSubmit"
         app:layout_constraintTop_toBottomOf="@+id/radGrpDetail"
-        android:textColor="#FFFFFF"/>
+        />
 
 </android.support.constraint.ConstraintLayout>

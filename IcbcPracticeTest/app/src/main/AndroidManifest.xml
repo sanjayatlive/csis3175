@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DetailActivity" />
-        <activity android:name=".activities.SplashActiivty">
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ChoiceActivity" />
-        <activity android:name=".activities.ResultActivity"></activity>
+        <activity android:name=".activities.ResultActivity" />
+        <activity android:name=".activities.IndexActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity"></activity>
     </application>
 
 </manifest>
