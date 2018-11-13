@@ -256,4 +256,33 @@ return status;
     }
 
 
+    public static void addRegisterDataToDB(String username, String password, String email){
+        try {
+
+            ContentValues cv;
+            long result = 0;
+
+            cv = new ContentValues();
+            cv.put("userid", 0);
+            cv.put("username", username);
+            cv.put("password", password);
+
+            result = db.insert("USERS", null, cv);
+
+            if (result == -1) {
+                //    txtViewMessage.
+                Toast.makeText(ctx, "Registration not successful", Toast.LENGTH_SHORT).show();
+                //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
+
+            } else {
+                Toast.makeText(ctx, "Registered successfully", Toast.LENGTH_SHORT).show();
+                // Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
+
+
+            }
+        }catch (Exception e){
+            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
 }
