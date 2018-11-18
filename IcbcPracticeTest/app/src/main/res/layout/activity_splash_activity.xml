@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:background="#00adef"
-    tools:context="com.icbc.nafiza.sanjay.icbc.activities.SplashActiivty"
+    tools:context="com.icbc.nafiza.sanjay.icbc.activities.SplashActivity"
     >
 
 

@@ -4,16 +4,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import com.icbc.nafiza.sanjay.icbc.R;
 
-public class SplashActiivty extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     private static int SPLASH_TIME_OUT = 3000;
     @Override
@@ -44,11 +42,7 @@ public class SplashActiivty extends AppCompatActivity {
             @Override
             public void run() {
 
-                ActivityOptionsCompat options ;
-                int x=20;
-                int y=20;
-
-               Intent i = new Intent(SplashActiivty.this, ChoiceActivity.class);
+               Intent i = new Intent(SplashActivity.this, SignInActivity.class);
 
                  startActivity(i);
 
