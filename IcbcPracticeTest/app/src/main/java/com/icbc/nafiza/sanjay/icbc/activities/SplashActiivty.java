@@ -1,12 +1,15 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 
 import com.icbc.nafiza.sanjay.icbc.R;
 
@@ -16,8 +19,20 @@ public class SplashActiivty extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_splash_activity);
         Animation myanimation = AnimationUtils.loadAnimation(this,R.anim.splashanimation);
+
+
+
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+
+
+        progressBar.getIndeterminateDrawable().setColorFilter(
+                Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN);
+
+    //    progressBar.setBackgroundResource(R.color.icon);
+
 
         new Handler().postDelayed(new Runnable() {
 
@@ -40,8 +55,7 @@ public class SplashActiivty extends AppCompatActivity {
                 // close this activity
                 finish();
             }
-        }, SPLASH_TIME_OUT
-                 );
+        }, SPLASH_TIME_OUT);
 
 
     }

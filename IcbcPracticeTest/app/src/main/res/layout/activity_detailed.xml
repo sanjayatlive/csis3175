@@ -4,27 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
 
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.DetailActivity">
 
-    <TextView
-        android:id="@+id/txtViewQuesDetail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.110000014" />
+        app:layout_constraintVertical_bias="0.110000014"
+        card_view:cardCornerRadius="4dp">
+
+
+        <TextView
+            android:id="@+id/txtViewQuesDetail"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="18sp"
+
+            />
+
+    </android.support.v7.widget.CardView>
 
     <RadioGroup
         android:id="@+id/radGrpDetail"
@@ -38,36 +51,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewQuesDetail"
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
         app:layout_constraintVertical_bias="0.251">
 
         <RadioButton
             android:id="@+id/radBtnFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radBtnSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radBtnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/radBtnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="#FFFFFF" />
+            android:layout_weight="1" />
 
     </RadioGroup>
 
@@ -81,7 +90,6 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_bg"
         android:text="@string/btnSubmit"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.26"
@@ -98,7 +106,6 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/button_bg"
         android:text="@string/btnNext"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.71"

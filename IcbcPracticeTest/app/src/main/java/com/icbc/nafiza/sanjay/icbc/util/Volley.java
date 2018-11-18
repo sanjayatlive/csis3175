@@ -20,15 +20,15 @@ public class Volley {
     static List<Item> dataList = new ArrayList<>();
 
     //RecyclerView recyclerView;
-    public static void fetchData(final Context ctx, final RecyclerView recyclerView)
-    {
+    public static void fetchData(final Context ctx, final RecyclerView recyclerView) {
 
+        dataList.clear();
 
         // final Parser parser = new Parser();
 
         RequestQueue queue = com.android.volley.toolbox.Volley.newRequestQueue(ctx);
-        String url = "http://practicetest.icbc.com/data/opkt/english.xml";
-
+       String url = "https://practicetest.icbc.com/data/opkt/english.xml";
+        //String url = "http://www.google.com";
 
         final ProgressDialog progressDialog = new ProgressDialog(ctx);
         progressDialog.setMessage("Fetching The File....");
@@ -40,22 +40,22 @@ public class Volley {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        // Log.d("Response is: ", ""+response);
+                       //  Log.d("Response is: ", ""+response);
                         try {
 
                             //      list = parser.parseIt(response);
 
 
                             dataList = Parser.parseIt(response.toString());
-                            createRecyclerViewAndSetAdapter(ctx,recyclerView);
+                            Log.d("size", "sizeofdataListFromVolley" + dataList.size());
+                            createRecyclerViewAndSetAdapter(ctx, recyclerView);
                             DBHelper.addQuestionsToDB(dataList);
                             progressDialog.dismiss();
 
-                         //   Log.d("size","sizeofresponsevolley" + response.length());
+                            //   Log.d("size","sizeofresponsevolley" + response.length());
 
                             // do something like setting recycler adapter
 
-                            Log.d("size","sizeofdataListFromVolley" + dataList.size());
 
 
 
@@ -70,7 +70,7 @@ public class Volley {
 
 
                             //         list2=list;
-                        }catch (Exception e){
+                        } catch (Exception e) {
                         }
 
 
@@ -89,15 +89,14 @@ public class Volley {
         //     Log.d("sizeoflistvolley>",""+responsemain.length());
 
 
-
         //   return list;
     }
 
 
-public static void createRecyclerViewAndSetAdapter(Context ctx,RecyclerView recyclerView){
+    public static void createRecyclerViewAndSetAdapter(Context ctx, RecyclerView recyclerView) {
 
-    RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList,ctx, recyclerView);
-    recyclerView.setAdapter(recyclerAdapter);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList, ctx, recyclerView);
+        recyclerView.setAdapter(recyclerAdapter);
 
 
     }

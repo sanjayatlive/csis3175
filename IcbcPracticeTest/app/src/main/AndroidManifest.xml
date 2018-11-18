@@ -8,12 +8,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icbc_icon_r"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icbc_icon_r"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.DetailActivity" />
         <activity android:name=".activities.SplashActiivty">
             <intent-filter>
@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ChoiceActivity"></activity>
+        <activity android:name=".activities.ChoiceActivity" />
+        <activity android:name=".activities.ResultActivity" />
     </application>
 
 </manifest>

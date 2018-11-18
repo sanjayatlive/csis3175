@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-   android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity">
 
     <TextView
-        android:background="@color/colorPrimary"
         android:id="@+id/txtViewOptions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:paddingBottom="7dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/colorPrimary"
         android:paddingLeft="15dp"
-        android:paddingRight="15dp"
         android:paddingTop="7dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="7dp"
         android:text="@string/txtViewOptions"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
@@ -47,30 +47,30 @@
 
         <RadioButton
             android:id="@+id/radBtnDatabase"
-            android:textColor="@android:color/background_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/radBtnDatabase" />
+            android:text="@string/radBtnDatabase"
+            android:textColor="@android:color/background_light" />
 
         <RadioButton
             android:id="@+id/radBtnNetwork"
-            android:textColor="@android:color/background_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/radBtnNetwork" />
+            android:text="@string/radBtnNetwork"
+            android:textColor="@android:color/background_light" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnResChoice"
-        android:background="@drawable/button_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/background_light"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/button_bg"
         android:text="@string/btnResChoice"
+        android:textColor="@android:color/background_light"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
