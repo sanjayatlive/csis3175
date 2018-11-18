@@ -1,6 +1,7 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -48,6 +49,8 @@ public class RegisterActivity extends AppCompatActivity {
                 password = editTxtPassword.getText().toString();
                 email = editTxtEmail.getText().toString();
                 validate(username, password, email);
+                Intent intent = new Intent(RegisterActivity.this,ChoiceActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -67,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                     else{
                         dbHelper=new DBHelper(this);
                         dbHelper.createTables();
-                        dbHelper.insertUserDataToDB(0,username,password,email);
+                        dbHelper.insertUserDataToDB(username,password,email);
                     }
                 }
             }

@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
@@ -59,14 +60,13 @@ public DBHelper(Context ctx){
 
             String dropProgressTable = "DROP TABLE IF EXISTS PROGRESS";
 
-            String dropUsersTable = "DROP TABLE IF EXISTS USERS";
+            //String dropUsersTable = "DROP TABLE IF EXISTS USERS";
 
 
             String createQuestionsTable = "CREATE TABLE QUESTIONS " +
                     "(questionid numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
 
-            String createUsersTable = "CREATE TABLE USERS " +
-                    "(userid numeric, username text, password text, email text);";
+
 
             String createProgressTable = "CREATE TABLE PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
@@ -74,9 +74,9 @@ public DBHelper(Context ctx){
 
             db.execSQL(dropQuestionsTable);
             db.execSQL(dropProgressTable);
-            db.execSQL(dropUsersTable);
+           // db.execSQL(dropUsersTable);
 
-            db.execSQL(createUsersTable);
+
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
 
@@ -86,6 +86,17 @@ public DBHelper(Context ctx){
          //   Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
             Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
 
+        }
+
+
+
+        try{
+            String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
+                    "(userid int primary key autoincrement not null, username text, password text, email text);";
+            db.execSQL(createUsersTable);
+
+        }catch(Exception e){
+            Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
         }
 
     }
@@ -256,14 +267,13 @@ return status;
 
 
 
-    public static void insertUserDataToDB(Integer userid, String username, String password, String email){
+    public static void insertUserDataToDB( String username, String password, String email){
         try{
 
             ContentValues cv;
             long result = 0;
 
             cv = new ContentValues();
-            cv.put("userid", 0);
             cv.put("username", username);
             cv.put("password", password);
             cv.put("email", email);

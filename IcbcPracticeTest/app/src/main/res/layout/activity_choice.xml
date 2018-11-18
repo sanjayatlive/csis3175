@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:background="@color/colorPrimaryLight"
+    android:id="@+id/choiceConstraint"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity">
 
     <TextView
