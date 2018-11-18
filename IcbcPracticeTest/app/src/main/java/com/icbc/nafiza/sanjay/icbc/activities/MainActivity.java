@@ -1,6 +1,9 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,11 +18,13 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.adapter.ItemDivider;
 import com.icbc.nafiza.sanjay.icbc.adapter.RecyclerAdapter;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
+import com.icbc.nafiza.sanjay.icbc.fragments.FragmentResults;
 import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
 import com.icbc.nafiza.sanjay.icbc.util.Volley;
 
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     FloatingActionButton fab;
+    FrameLayout frame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +79,14 @@ public class MainActivity extends AppCompatActivity {
 
         addListener();
 
+        getIds();
 
+    }
+
+    public void getIds(){
+        frame = (FrameLayout)findViewById(R.id.frame);
+        frame.setVisibility(View.INVISIBLE);
+        frame.setEnabled(false);
     }
 
 
@@ -84,6 +97,18 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
                 startActivity(intent);
                 finish();
+
+               /* frame.setVisibility(View.VISIBLE);
+                frame.setEnabled(true);
+
+                Fragment fr = new FragmentResults();
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fm.beginTransaction();
+                fragmentTransaction.replace(R.id.frame, fr);
+                fragmentTransaction.commit();*/
+
+
             }
         });
     }
