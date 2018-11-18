@@ -1,25 +1,16 @@
 <resources>
     <string name="app_name">Icbc Practice Test</string>
-    <string name="txtTitle">Questions</string>
     <string name="txtQuestionNo">Question No</string>
     <string name="btnSubmit">SUBMIT</string>
     <string name="btnNext">NEXT</string>
     <string name="dbName">ICBC</string>
     <string name="dbVersion">1</string>
-    <string name="txtViewAppTitle"> ICBC PRACTICE TEST </string>
     <string name="txtViewOptions">Select Resource For Practice Test</string>
     <string name="radBtnDatabase">Database</string>
     <string name="radBtnNetwork">Website</string>
     <string name="btnResChoice">START</string>
-    <string name="txtViewWelcome"> WELCOME </string>
-    <string name="txtViewTo"> TO </string>
     <string name="btnClose">CLOSE</string>
     <string name="txtViewResultText">Your Attempted Score Is</string>
-    <string name="title_activity_detail2_acivity">Detail2Acivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_detailed">DetailedActivity</string>
     <string name="imgSplash">ICBC TEST</string>
 
     <string name="btnSignIn">Sign In</string>
