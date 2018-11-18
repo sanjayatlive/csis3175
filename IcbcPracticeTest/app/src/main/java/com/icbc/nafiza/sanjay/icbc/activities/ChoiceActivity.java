@@ -16,10 +16,11 @@ import com.icbc.nafiza.sanjay.icbc.R;
 
 public class ChoiceActivity extends AppCompatActivity {
     SharedPreferences pref ;
-            SharedPreferences.Editor editor;
+    SharedPreferences.Editor editor;
     Button btnResChoice;
     RadioGroup radGroupResOption;
     RadioButton radBtnNetwork, radBtnDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +55,7 @@ public class ChoiceActivity extends AppCompatActivity {
 
                 if(radBtnNetwork.isChecked())
                 {
-                editor.putInt("choice", 0);
+                    editor.putInt("choice", 0);
                 }else
                 {
                     editor.putInt("choice", 1);

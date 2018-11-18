@@ -5,8 +5,9 @@
     <!--<color name="colorAccent">#D81B60</color>-->
 
     <!-- <color name="colorPrimary">#37474f</color>-->
+    <color name="colorPrimary">#00adef</color>
     <color name="colorPrimaryDark">#263238</color>
-    <color name="colorPrimary">#008577</color>
+    <!--<color name="colorPrimary">#008577</color>-->
     <color name="colorPrimaryLight"></color>
     <!--<color name="colorPrimaryLight">#00adef</color>-->
     <color name="colorAccent">#1b12cf</color>

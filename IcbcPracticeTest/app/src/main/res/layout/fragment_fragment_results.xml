@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fragment_bg"
+    android:backgroundTint="#eeeeee"
     tools:context="com.icbc.nafiza.sanjay.icbc.fragments.FragmentResults">
 
     <!-- TODO: Update blank fragment layout -->

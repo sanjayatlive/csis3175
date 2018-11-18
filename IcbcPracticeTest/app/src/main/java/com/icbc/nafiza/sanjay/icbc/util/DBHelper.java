@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
+import com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public DBHelper(Context ctx){
                     "(questionid numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
 
             String createUsersTable = "CREATE TABLE USERS " +
-                    "(userid numeric, username text, password text);";
+                    "(userid numeric, username text, password text, email text);";
 
             String createProgressTable = "CREATE TABLE PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
@@ -252,6 +253,39 @@ return status;
 
         return count;
     }
+
+
+
+    public static void insertUserDataToDB(Integer userid, String username, String password, String email){
+        try{
+
+            ContentValues cv;
+            long result = 0;
+
+            cv = new ContentValues();
+            cv.put("userid", 0);
+            cv.put("username", username);
+            cv.put("password", password);
+            cv.put("email", email);
+            result=db.insert("USERS",null,cv);
+
+            if (result == -1) {
+                //    txtViewMessage.
+                Snackbar.make(((RegisterActivity)ctx).findViewById(R.id.regConstLayout), "Registration Unsuccessfull", Snackbar.LENGTH_LONG).show();
+                //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
+
+            } else {
+                Snackbar.make(((RegisterActivity)ctx).findViewById(R.id.regConstLayout), "Registration Successfull", Snackbar.LENGTH_LONG).show();
+                // Snackbar.make((this.findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
+
+
+            }
+        }catch (Exception e){
+            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
 }
