@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent"
-
+    android:background="@color/colorPrimaryLight"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.DetailActivity">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/txtViewQuesDetail"
-
+            android:textColor="@color/colorPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -46,7 +46,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/comp_bg"
+        android:background="@drawable/radio_bg"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -58,37 +59,47 @@
             android:id="@+id/radBtnFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/icon"
+            android:padding="8dp"/>
 
         <RadioButton
             android:id="@+id/radBtnSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/icon"
+            android:padding="8dp"/>
 
         <RadioButton
             android:id="@+id/radBtnThird"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/icon"
+            android:padding="8dp"/>
 
         <RadioButton
             android:id="@+id/radBtnFourth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textColor="@color/icon"
+            android:padding="8dp"/>
 
     </RadioGroup>
 
     <Button
         android:id="@+id/btnSubmit"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_bg"
         android:text="@string/btnSubmit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -98,13 +109,15 @@
 
     <Button
         android:id="@+id/btnNext"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_bg"
         android:text="@string/btnNext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

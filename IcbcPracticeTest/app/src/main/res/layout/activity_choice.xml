@@ -5,31 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimaryLight"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity">
 
     <TextView
         android:id="@+id/txtViewOptions"
+        android:background="@drawable/comp_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
-        android:paddingLeft="15dp"
-        android:paddingTop="7dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="7dp"
+        android:padding="8dp"
         android:text="@string/txtViewOptions"
-        android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16000003" />
+        app:layout_constraintVertical_bias="0.05" />
+
+    <TextView
+        android:id="@+id/txtViewLogUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/comp_bg"
+        android:padding="8dp"
+        android:text="@string/txtViewUsername"
+        android:textColor="@color/primaryText"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewOptions"
+        app:layout_constraintVertical_bias="0.088" />
+
+    <TextView
+        android:id="@+id/txtViewLogPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="356dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/comp_bg"
+        android:padding="8dp"
+        android:text="@string/txtViewPassword"
+        android:textColor="@color/primaryText"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewLogUser"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    <EditText
+        android:id="@+id/editTxtLogUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintUser"
+        android:inputType="textPersonName"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.297"
+        app:layout_constraintStart_toEndOf="@+id/txtViewUsername"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewOptions"
+        app:layout_constraintVertical_bias="0.062" />
+
+    <EditText
+        android:id="@+id/editTxtLogPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="352dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/hintPassword"
+        android:inputType="textPassword"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintStart_toEndOf="@+id/txtViewPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTxtLogUser"
+        app:layout_constraintVertical_bias="1.0" />
+
 
     <RadioGroup
 
@@ -37,13 +118,15 @@
         android:layout_width="271dp"
         android:layout_height="80dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/comp_bg"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/radio_bg"
+        android:backgroundTint="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewOptions"
-        app:layout_constraintVertical_bias="0.156">
+        app:layout_constraintTop_toBottomOf="@+id/editTxtLogPass"
+        app:layout_constraintVertical_bias="0.172">
 
         <RadioButton
             android:id="@+id/radBtnDatabase"
@@ -51,26 +134,29 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/radBtnDatabase"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@color/icon"
+            android:padding="8dp"/>
 
         <RadioButton
             android:id="@+id/radBtnNetwork"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:padding="8dp"
             android:text="@string/radBtnNetwork"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@color/icon" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnResChoice"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/button_bg"
         android:text="@string/btnResChoice"
-        android:textColor="@android:color/background_light"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

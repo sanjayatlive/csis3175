@@ -4,10 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     tools:context="com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity">
 
     <TextView
         android:id="@+id/txtViewUsername"
+        android:background="@drawable/comp_bg"
+        android:padding="8dp"
+        android:textColor="@color/primaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -25,6 +29,9 @@
 
     <TextView
         android:id="@+id/txtViewPassword"
+        android:background="@drawable/comp_bg"
+        android:padding="8dp"
+        android:textColor="@color/primaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -42,6 +49,9 @@
 
     <TextView
         android:id="@+id/txtViewEmail"
+        android:background="@drawable/comp_bg"
+        android:padding="8dp"
+        android:textColor="@color/primaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -59,6 +69,8 @@
 
     <EditText
         android:id="@+id/editTxtUser"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -77,6 +89,8 @@
 
     <EditText
         android:id="@+id/editTxtPassword"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -88,10 +102,10 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toEndOf="@+id/txtViewPassword"
         app:layout_constraintTop_toBottomOf="@+id/editTxtUser"
-        app:layout_constraintVertical_bias="0.066" />
+        app:layout_constraintVertical_bias="0.093" />
 
     <EditText
         android:id="@+id/editTxtEmail"
@@ -104,15 +118,20 @@
         android:ems="10"
         android:hint="@string/hintEmail"
         android:inputType="textEmailAddress"
+        android:textColor="@color/primaryText"
+        android:textColorHint="@color/secondaryText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toEndOf="@+id/txtViewEmail"
         app:layout_constraintTop_toBottomOf="@+id/editTxtPassword"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <Button
         android:id="@+id/btnRegister"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

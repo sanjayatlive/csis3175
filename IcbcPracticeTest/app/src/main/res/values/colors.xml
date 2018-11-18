@@ -8,6 +8,7 @@
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryLight"></color>
+    <!--<color name="colorPrimaryLight">#00adef</color>-->
     <color name="colorAccent">#1b12cf</color>
     <color name="primaryText">#212121</color>
     <color name="secondaryText">#757575</color>
