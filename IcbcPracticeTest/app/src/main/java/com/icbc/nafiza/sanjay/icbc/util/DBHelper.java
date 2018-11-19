@@ -70,15 +70,14 @@ public class DBHelper extends SQLiteOpenHelper {
             String createProgressTable = "CREATE TABLE PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
 
-            String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
-                    "(userid numeric, username text, password text, email text);";
+
 
             db.execSQL(dropQuestionsTable);
             db.execSQL(dropProgressTable);
-             db.execSQL(dropUsersTable);
+            // db.execSQL(dropUsersTable);
 
 
-            db.execSQL(createUsersTable);
+          //  db.execSQL(createUsersTable);
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
 
@@ -88,6 +87,16 @@ public class DBHelper extends SQLiteOpenHelper {
             //   Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
             Snackbar.make(((MainActivity) ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
 
+        }
+
+
+        try{
+            String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
+                    "(userid int primary key autoincrement not null, username text, password text, email text);";
+            db.execSQL(createUsersTable);
+
+        }catch(Exception e){
+            Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
         }
 
     }
@@ -247,7 +256,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-/*
+
     public static void insertUserDataToDB(String username, String password, String email) {
         try {
 
@@ -277,12 +286,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public static int getLoginResultFromDB(String logUser, String logPass) {
+    /*public static int getLoginResultFromDB(String logUser, String logPass) {
 
         int status = -1;
         int dbstatus=-1;
 
-        String queryStr = "SELECT userid FROM USERS WHERE username == "+ logUser +" AND password == "+ logPass +" ;";
+        String queryStr = "SELECT username FROM USERS WHERE username == "+ logUser +" AND password == "+ logPass +" ;";
 
         try {
             Cursor cur = db.rawQuery(queryStr, null);
@@ -304,6 +313,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return status;
 
-    }
-*/
+    }*/
+
 }

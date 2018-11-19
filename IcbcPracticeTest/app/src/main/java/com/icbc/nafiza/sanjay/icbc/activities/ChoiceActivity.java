@@ -28,12 +28,14 @@ public class ChoiceActivity extends AppCompatActivity {
     RadioButton radBtnNetwork, radBtnDatabase;
     DBHelper dbHelper;
     int status = 0;
+    private static final int PASSWORD_LENGTH = 6;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
-        dbHelper=new DBHelper(this);
+        dbHelper = new DBHelper(this);
 
         TextView txtViewOptions = (TextView) findViewById(R.id.txtViewOptions);
         radGroupResOption = (RadioGroup) findViewById(R.id.radGroupResOption);
@@ -59,8 +61,7 @@ public class ChoiceActivity extends AppCompatActivity {
     }
 
     public void addListener() {
-        final String logUser = editTxtLogUser.getText().toString();
-        final String logPass = editTxtLogPass.getText().toString();
+
 
         btnResChoice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +73,33 @@ public class ChoiceActivity extends AppCompatActivity {
                     editor.putInt("choice", 1);
                 }
                 editor.commit();
-                Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
-                startActivity(intent);
-
-
-
+               // checkCredentials();
 
             }
         });
     }
 
+   /* public void checkCredentials() {
+        try {
+            String logUser = editTxtLogUser.getText().toString();
+            String logPass = editTxtLogPass.getText().toString();
+            if (logUser.isEmpty() || logUser.equals(null) || logUser.equals(" ")) {
+                Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Username", Snackbar.LENGTH_LONG).show();
+            } else {
+                if (logPass.isEmpty() || logPass.equals(null) || logPass.equals(" ") || logPass.length() > PASSWORD_LENGTH) {
+                    Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
+                } else {
+                    dbHelper = new DBHelper(this);
+                    int status=dbHelper.getLoginResultFromDB(logUser,logPass);
+                    Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
+                   // Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
+                    //startActivity(intent);
+                }
+            }
+
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+*/
 }
