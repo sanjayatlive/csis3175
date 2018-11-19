@@ -22,5 +22,6 @@ public class ResultActivity extends AppCompatActivity {
         txtViewResult.setText(showScore);
 
 
+
     }
 }
