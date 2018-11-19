@@ -26,7 +26,7 @@ public class ChoiceActivity extends AppCompatActivity {
     EditText editTxtLogPass;
     RadioGroup radGroupResOption;
     RadioButton radBtnNetwork, radBtnDatabase;
-    DBHelper dbHelper;
+   // DBHelper dbHelper;
     int status = 0;
     private static final int PASSWORD_LENGTH = 6;
 
@@ -35,7 +35,7 @@ public class ChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice);
-        dbHelper = new DBHelper(this);
+        //dbHelper = new DBHelper(this);
 
         TextView txtViewOptions = (TextView) findViewById(R.id.txtViewOptions);
         radGroupResOption = (RadioGroup) findViewById(R.id.radGroupResOption);
@@ -73,13 +73,13 @@ public class ChoiceActivity extends AppCompatActivity {
                     editor.putInt("choice", 1);
                 }
                 editor.commit();
-               // checkCredentials();
+                checkCredentials();
 
             }
         });
     }
 
-   /* public void checkCredentials() {
+    public void checkCredentials() {
         try {
             String logUser = editTxtLogUser.getText().toString();
             String logPass = editTxtLogPass.getText().toString();
@@ -89,9 +89,9 @@ public class ChoiceActivity extends AppCompatActivity {
                 if (logPass.isEmpty() || logPass.equals(null) || logPass.equals(" ") || logPass.length() > PASSWORD_LENGTH) {
                     Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
                 } else {
-                    dbHelper = new DBHelper(this);
-                    int status=dbHelper.getLoginResultFromDB(logUser,logPass);
-                    Toast.makeText(this, status, Toast.LENGTH_SHORT).show();
+                   // dbHelper = new DBHelper(this);
+                    int status=DBHelper.getLoginResultFromDB(logUser,logPass);
+                    Toast.makeText(this, Integer.toString(status), Toast.LENGTH_SHORT).show();
                    // Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
                     //startActivity(intent);
                 }
@@ -101,5 +101,5 @@ public class ChoiceActivity extends AppCompatActivity {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
-*/
+
 }
