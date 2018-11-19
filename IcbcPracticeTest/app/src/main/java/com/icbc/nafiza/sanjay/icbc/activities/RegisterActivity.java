@@ -45,30 +45,37 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = editTxtUser.getText().toString();
-                password = editTxtPassword.getText().toString();
-                email = editTxtEmail.getText().toString();
-                validate(username, password, email);
-                Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
-                startActivity(intent);
+                username = editTxtUser.getText().toString().trim();
+                password = editTxtPassword.getText().toString().trim();
+                email = editTxtEmail.getText().toString().trim();
+                if(validate(username, password, email)) {
+                    finish();
+                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    public void validate(String username, String password, String email) {
+    public boolean validate(String username, String password, String email) {
+
+        boolean flag = true;
 
         try {
             if (username.isEmpty() || username.equals(null) || username.equals(" ") ) {
+                flag = false;
                 Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Username", Snackbar.LENGTH_LONG).show();
             } else {
                 if (password.isEmpty() || password.equals(null) || password.equals(" ") ||  password.length()>PASSWORD_LENGTH) {
+                    flag = false;
                     Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
                 } else {
                     if(email.isEmpty() || email.equals(null) || email.equals(" ") || !email.matches(EMAIL_REGEX)){
+                        flag = false;
                         Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid EMail-Id", Snackbar.LENGTH_LONG).show();
                     }
                     else{
-                        dbHelper=new DBHelper(this);
+                       dbHelper=new DBHelper(this);
                         dbHelper.createTables();
                         dbHelper.insertUserDataToDB(username,password,email);
                     }
@@ -77,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        return flag;
     }
 
 

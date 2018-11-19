@@ -9,7 +9,6 @@ import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
-import com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
@@ -37,6 +36,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
         super(ctx, ctx.getResources().getString(R.string.dbName), null, Integer.parseInt(ctx.getResources().getString(R.string.dbVersion)));
         //setOpenParams();
+
+        db = getReadableDatabase();
+
         this.ctx = ctx;
     }
 
@@ -85,21 +87,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
         } catch (Exception e) {
             //   Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
-            Snackbar.make(((MainActivity) ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
+            Snackbar.make(((RegisterActivity) ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
 
         }
 
 
         try{
             String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
-                    "(userid int primary key autoincrement not null, username text, password text, email text);";
+                    "(userid integer primary key autoincrement not null, username text, password text, email text);";
             db.execSQL(createUsersTable);
 
         }catch(Exception e){
-            Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
+            Snackbar.make(((RegisterActivity)ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
         }
 
     }
+
+
 
     public static void addQuestionsToDB(List<Item> dataList) {
         try {
@@ -286,26 +290,35 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    /*public static int getLoginResultFromDB(String logUser, String logPass) {
+    public static int getLoginResultFromDB(String logUser, String logPass) {
 
         int status = -1;
         int dbstatus=-1;
 
-        String queryStr = "SELECT username FROM USERS WHERE username == "+ logUser +" AND password == "+ logPass +" ;";
+        String queryStr = "SELECT userid FROM USERS WHERE username = '"+ logUser +"' AND password = '"+ logPass +"' ;";
+
+        System.out.println("<<<<<<<>>>>>>>>>>>>>" + queryStr);
 
         try {
             Cursor cur = db.rawQuery(queryStr, null);
 
 
-            if (cur != null) {
+            /*if (cur != null) {
                 cur.moveToFirst();
                 if (!cur.isAfterLast()){
                     dbstatus = cur.getInt(0);
                     if(status==dbstatus)
                         status=1;
-                }
+                }}*/
 
+
+            if (cur != null) {
+                cur.moveToFirst();
+                if (!cur.isAfterLast())
+                    status = cur.getInt(0);
             }
+
+
         } catch (Exception e) {
             Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -313,6 +326,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return status;
 
-    }*/
+    }
 
 }

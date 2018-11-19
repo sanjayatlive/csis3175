@@ -73,7 +73,7 @@ public  class Parser {
             else
             {
                 tag = xpp.getName().trim();
-                System.out.println("<<<<<<<othertags>>>>>" + tag);
+               // System.out.println("<<<<<<<othertags>>>>>" + tag);
             }
 
             //System.out.println("Start tag "+xpp.getName());
