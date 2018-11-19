@@ -48,36 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
                 username = editTxtUser.getText().toString();
                 password = editTxtPassword.getText().toString();
                 email = editTxtEmail.getText().toString();
-                validate(username, password, email);
-                Intent intent = new Intent(RegisterActivity.this,ChoiceActivity.class);
-                startActivity(intent);
+
             }
         });
     }
 
-    public void validate(String username, String password, String email) {
-
-        try {
-            if (username.isEmpty() || username.equals(null) || username.equals(" ") ) {
-                Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Username", Snackbar.LENGTH_LONG).show();
-            } else {
-                if (password.isEmpty() || password.equals(null) || password.equals(" ") ||  password.length()>PASSWORD_LENGTH) {
-                    Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
-                } else {
-                    if(email.isEmpty() || email.equals(null) || email.equals(" ") || !email.matches(EMAIL_REGEX)){
-                        Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid EMail-Id", Snackbar.LENGTH_LONG).show();
-                    }
-                    else{
-                        dbHelper=new DBHelper(this);
-                        dbHelper.createTables();
-                        dbHelper.insertUserDataToDB(username,password,email);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
 
 
 

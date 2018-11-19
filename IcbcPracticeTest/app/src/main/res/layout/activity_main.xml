@@ -21,6 +21,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
+        android:background="@drawable/fab_button_bg"
+        android:backgroundTint="@color/colorAccent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -34,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.927"
-        app:srcCompat="@drawable/exchange" />
+        app:srcCompat="@drawable/fab_submit" />
 
     <FrameLayout
         android:layout_width="match_parent"
