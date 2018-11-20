@@ -49,7 +49,8 @@ public class FragmentResults extends Fragment {
     public String setPrecentText(){
         int score = DBHelper.getScoreFromDB();
         String showScore = score + " / " + Parser.dataList.size();
-        int percentage = (score/Parser.dataList.size())*100;
+        int total = Parser.dataList.size();
+        int percentage = score*100/total;
         String percent = percentage + "%";
         return  percent;
     }
