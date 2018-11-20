@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     String username;
     String password;
     String email;
-    DBHelper dbHelper;
+   // DBHelper dbHelper;
 
     private static final int PASSWORD_LENGTH = 6;
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
@@ -62,22 +62,23 @@ public class RegisterActivity extends AppCompatActivity {
         boolean flag = true;
 
         try {
-            if (username.isEmpty() || username.equals(null) || username.equals(" ") ) {
+            if (username.isEmpty() || username.equals(null) || username.length()==0 ) {
                 flag = false;
                 Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Username", Snackbar.LENGTH_LONG).show();
             } else {
-                if (password.isEmpty() || password.equals(null) || password.equals(" ") ||  password.length()>PASSWORD_LENGTH) {
+                if (password.isEmpty() || password.equals(null) || password.length()==0 ||  password.length()>PASSWORD_LENGTH) {
                     flag = false;
                     Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
                 } else {
-                    if(email.isEmpty() || email.equals(null) || email.equals(" ") || !email.matches(EMAIL_REGEX)){
+                    if(email.isEmpty() || email.equals(null) || email.length()==0 || !email.matches(EMAIL_REGEX)){
                         flag = false;
                         Snackbar.make((this.findViewById(R.id.regConstLayout)), "Enter Valid EMail-Id", Snackbar.LENGTH_LONG).show();
                     }
                     else{
-                       dbHelper=new DBHelper(this);
-                        dbHelper.createTables();
-                        dbHelper.insertUserDataToDB(username,password,email);
+                   //    dbHelper=new DBHelper(this);
+                    //    dbHelper.createTables();
+                        if(DBHelper.insertUserDataToDB(username.trim(),password.trim(),email.trim(),this)==-1)
+                            flag = false;
                     }
                 }
             }

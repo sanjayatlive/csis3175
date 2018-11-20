@@ -1,6 +1,8 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +26,12 @@ public class SignInActivity extends AppCompatActivity {
         btnGuest=(Button)findViewById(R.id.btnGuest);
 
         addListener();
+        SharedPreferences pref;
+        SharedPreferences.Editor editor;
+        pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
+        editor.putInt("choice", 0);
+        editor.commit();
     }
 
     public void addListener(){

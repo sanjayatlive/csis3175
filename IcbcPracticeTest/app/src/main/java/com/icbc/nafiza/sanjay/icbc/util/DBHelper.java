@@ -9,8 +9,10 @@ import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity;
+import com.icbc.nafiza.sanjay.icbc.activities.SplashActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
 import java.util.ArrayList;
@@ -72,7 +74,8 @@ public class DBHelper extends SQLiteOpenHelper {
             String createProgressTable = "CREATE TABLE PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
 
-
+            String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
+                    "(userid integer primary key autoincrement not null, username text, password text, email text);";
 
             db.execSQL(dropQuestionsTable);
             db.execSQL(dropProgressTable);
@@ -83,6 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
 
+            db.execSQL(createUsersTable);
+
             //   Toast.makeText(ctx,"Tables Created", Toast.LENGTH_LONG).show();
 
         } catch (Exception e) {
@@ -92,14 +97,14 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
 
-        try{
+      /*  try{
             String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
                     "(userid integer primary key autoincrement not null, username text, password text, email text);";
             db.execSQL(createUsersTable);
 
         }catch(Exception e){
             Snackbar.make(((RegisterActivity)ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
-        }
+        }*/
 
     }
 
@@ -137,6 +142,41 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
     }
+
+    public static int getQuestionsCountFromDB() {
+
+        int count=0;
+
+        String queryStr = "SELECT count(*) FROM QUESTIONS;";
+        try {
+            Cursor cur = db.rawQuery(queryStr, null);
+
+
+            if (cur != null) {
+                cur.moveToFirst();
+                if (!cur.isAfterLast()) {
+                    count = cur.getInt(0);
+
+                }
+            }
+        } catch (Exception e) {
+            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+        return count;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static List<Item> getQuestionsFromDB() {
 
@@ -238,11 +278,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public static int getScoreFromDB(int userId) {
-        String queryStr = "SELECT COUNT(*) count FROM PROGRESS WHERE status=1 and userid = 0;";
+        String queryStr = "SELECT COUNT(*) count FROM PROGRESS WHERE status=1;";
 
         int count = 0;
-
-
         try {
             Cursor cur = db.rawQuery(queryStr, null);
 
@@ -261,11 +299,12 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public static void insertUserDataToDB(String username, String password, String email) {
+    public static long insertUserDataToDB(String username, String password, String email,Context regCtx) {
+        long result = 0;
         try {
 
             ContentValues cv;
-            long result = 0;
+
 
             cv = new ContentValues();
             cv.put("username", username);
@@ -275,11 +314,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
             if (result == -1) {
                 //    txtViewMessage.
-                Snackbar.make(((RegisterActivity) ctx).findViewById(R.id.regConstLayout), "Registration Unsuccessfull", Snackbar.LENGTH_LONG).show();
+               // Toast.makeText(ctx, "-1", Toast.LENGTH_SHORT).show();
+                Snackbar.make(((RegisterActivity) regCtx).findViewById(R.id.regConstLayout), "Registration Unsuccessfull", Snackbar.LENGTH_LONG).show();
                 //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
 
             } else {
-                Snackbar.make(((RegisterActivity) ctx).findViewById(R.id.regConstLayout), "Registration Successfull", Snackbar.LENGTH_LONG).show();
+             //   Toast.makeText(ctx, "1", Toast.LENGTH_SHORT).show();
+                Snackbar.make(((RegisterActivity) regCtx).findViewById(R.id.regConstLayout), "Registration Successfull", Snackbar.LENGTH_LONG).show();
                 // Snackbar.make((this.findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
 
 
@@ -287,15 +328,16 @@ public class DBHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
             Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+        return result;
     }
 
 
-    public static int getLoginResultFromDB(String logUser, String logPass) {
+    public static int getLoginResultFromDB(String logUser, String logPass, Context logCtx) {
 
         int status = -1;
         int dbstatus=-1;
 
-        String queryStr = "SELECT userid FROM USERS WHERE username = '"+ logUser +"' AND password = '"+ logPass +"' ;";
+        String queryStr = "SELECT userid FROM USERS WHERE lower(username) = lower('"+ logUser +"') AND password = '"+ logPass +"' ;";
 
         System.out.println("<<<<<<<>>>>>>>>>>>>>" + queryStr);
 
@@ -319,8 +361,10 @@ public class DBHelper extends SQLiteOpenHelper {
             }
 
 
+
         } catch (Exception e) {
-            Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+           // Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
+            Snackbar.make(((ChoiceActivity) logCtx).findViewById(R.id.choiceConstraint), e.getMessage(), Snackbar.LENGTH_LONG).show();
 
         }
 

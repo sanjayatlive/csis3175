@@ -18,6 +18,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.RenderProcessGoneDetail;
 import android.widget.FrameLayout;
 
 import com.icbc.nafiza.sanjay.icbc.R;
@@ -35,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
     String responseglobal = "";
     Snackbar snackBar;
     RecyclerView recyclerView;
-    DBHelper dbHelper;
+    //  DBHelper dbHelper;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     FloatingActionButton fab;
     FrameLayout frame;
+    RecyclerAdapter recyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.addItemDecoration(new ItemDivider(this, LinearLayoutManager.VERTICAL, 16));
 
-        dbHelper = new DBHelper(this);
+        //  dbHelper = new DBHelper(this);
 
 
         pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         int choice = pref.getInt("choice", 0);
 
         if (choice == 0) {
-            dbHelper.createTables();
+            // dbHelper.createTables();
             getDataFromNetwork();
         } else {
             getDataFromDB();
@@ -83,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void getIds(){
-        frame = (FrameLayout)findViewById(R.id.frame);
+    public void getIds() {
+        frame = (FrameLayout) findViewById(R.id.frame);
         frame.setVisibility(View.INVISIBLE);
         frame.setEnabled(false);
     }
@@ -94,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ResultActivity.class);
+               /* Intent intent = new Intent(MainActivity.this, ResultActivity.class);
                 startActivity(intent);
-                finish();
+                finish();*/
 
-               /* frame.setVisibility(View.VISIBLE);
+                frame.setVisibility(View.VISIBLE);
                 frame.setEnabled(true);
 
                 Fragment fr = new FragmentResults();
@@ -106,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction fragmentTransaction = fm.beginTransaction();
                 fragmentTransaction.replace(R.id.frame, fr);
-                fragmentTransaction.commit();*/
+                fragmentTransaction.commit();
+                FragmentResults.fr = fr;
+                RecyclerAdapter.isClickable = false;
 
 
             }
@@ -166,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createRecyclerViewAndSetAdapter(RecyclerView recyclerView) {
 
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(dataList, this, recyclerView);
+        recyclerAdapter = new RecyclerAdapter(dataList, this, recyclerView);
         recyclerView.setAdapter(recyclerAdapter);
 
 

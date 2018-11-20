@@ -10,9 +10,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import com.icbc.nafiza.sanjay.icbc.R;
+import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
 
 public class SplashActivity extends AppCompatActivity {
-
+    DBHelper dbHelper;
     private static int SPLASH_TIME_OUT = 3000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,5 +53,13 @@ public class SplashActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
 
 
+        dbHelper = new DBHelper(this);
+        dbHelper.createTables();
+
+
+
     }
+
+
+
 }
