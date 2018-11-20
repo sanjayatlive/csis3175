@@ -26,7 +26,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.726"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.064" />
@@ -39,17 +39,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/comp_bg"
         android:padding="8dp"
         android:text="@string/txtViewUsername"
         android:textColor="@color/primaryText"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewOptions"
-        app:layout_constraintVertical_bias="0.088" />
+        app:layout_constraintVertical_bias="0.06" />
 
     <TextView
         android:id="@+id/txtViewLogPass"
@@ -59,14 +59,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/comp_bg"
         android:padding="8dp"
         android:text="@string/txtViewPassword"
         android:textColor="@color/primaryText"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.138"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtViewLogUser"
         app:layout_constraintVertical_bias="1.0" />
@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -85,19 +85,20 @@
         android:inputType="textPersonName"
         android:textColor="@color/primaryText"
         android:textColorHint="@color/secondaryText"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.297"
         app:layout_constraintStart_toEndOf="@+id/txtViewUsername"
         app:layout_constraintTop_toBottomOf="@+id/txtViewOptions"
-        app:layout_constraintVertical_bias="0.062" />
+        app:layout_constraintVertical_bias="0.059" />
 
     <EditText
         android:id="@+id/editTxtLogPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="352dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="28dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -105,6 +106,7 @@
         android:inputType="textPassword"
         android:textColor="@color/primaryText"
         android:textColorHint="@color/secondaryText"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.31"
@@ -164,22 +166,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radGroupResOption"
         app:layout_constraintVertical_bias="0.325" />
-
-    <ImageView
-        android:id="@+id/imgViewLogin"
-        android:layout_width="98dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/descImgLogin"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.029999971"
-        app:srcCompat="@drawable/img_login" />
 
 </android.support.constraint.ConstraintLayout>

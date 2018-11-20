@@ -26,8 +26,9 @@
     <string name="hello_blank_fragment">Hello</string>
     <string name="descImgResult">Result Image</string>
     <string name="descImgRegistration">Registration Image</string>
-    <string name="txtViewOptions">Select Resource For Test</string>
+    <string name="txtViewOptions">Select Resource For Practice Test</string>
     <string name="descImgLogin">Login Image</string>
+    <string name="descImgWelcome">Welcome To ICBC</string>
 
 
 </resources>
