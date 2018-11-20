@@ -17,7 +17,7 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         txtViewResult = (TextView) findViewById(R.id.txtViewResult);
-        int score = DBHelper.getScoreFromDB(0);
+        int score = DBHelper.getScoreFromDB();
         String showScore=score+" / "+Parser.dataList.size();
         txtViewResult.setText(showScore);
 

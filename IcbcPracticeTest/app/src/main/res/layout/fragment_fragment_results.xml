@@ -12,7 +12,12 @@
         android:id="@+id/txtViewFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="270dp"
+        android:gravity="center_horizontal"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/closeFab"
@@ -23,5 +28,39 @@
         android:backgroundTint="@color/icon"
         android:layout_gravity="right"
         android:src="@drawable/fab_close" />
+
+    <TextView
+        android:id="@+id/txtViewResTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center_horizontal"
+        android:textAlignment="gravity"
+        android:text="@string/txtViewResultText"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"/>
+
+    <ImageView
+        android:id="@+id/imgViewResult"
+        android:layout_width="121dp"
+        android:layout_height="118dp"
+        android:contentDescription="@string/descImgResult"
+        android:src="@drawable/img_result"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/txtViewPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400dp"
+        android:background="@drawable/fab_button_bg"
+        android:backgroundTint="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/icon"
+        android:padding="10dp"/>
 
 </FrameLayout>

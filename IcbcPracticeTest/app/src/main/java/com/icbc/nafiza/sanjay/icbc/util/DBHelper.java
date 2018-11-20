@@ -12,7 +12,6 @@ import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.activities.ChoiceActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.MainActivity;
 import com.icbc.nafiza.sanjay.icbc.activities.RegisterActivity;
-import com.icbc.nafiza.sanjay.icbc.activities.SplashActivity;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 
 import java.util.ArrayList;
@@ -277,7 +276,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public static int getScoreFromDB(int userId) {
+    public static int getScoreFromDB() {
         String queryStr = "SELECT COUNT(*) count FROM PROGRESS WHERE status=1;";
 
         int count = 0;

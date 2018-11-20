@@ -19,7 +19,9 @@ import com.icbc.nafiza.sanjay.icbc.util.Parser;
 
 public class FragmentResults extends Fragment {
     TextView txtViewResult;
+    TextView txtViewPercentage;
     FloatingActionButton closeFab;
+
     public static Fragment fr;
 
     @Override
@@ -30,17 +32,26 @@ public class FragmentResults extends Fragment {
         View view = inflater.inflate(
                 R.layout.fragment_fragment_results, container, false);
         closeFab = (FloatingActionButton)view.findViewById(R.id.closeFab);
+        txtViewResult = (TextView)view.findViewById(R.id.txtViewFragment);
+        txtViewPercentage = (TextView)view.findViewById(R.id.txtViewPercentage);
+        txtViewResult.setText(setScoreText());
+        txtViewPercentage.setText(setPrecentText());
         addListener();
         return view;
     }
 
-
-    public void setText(String text) {
-
-        int score = DBHelper.getScoreFromDB(0);
+    public String setScoreText(){
+        int score = DBHelper.getScoreFromDB();
         String showScore = score + " / " + Parser.dataList.size();
-        txtViewResult = (TextView) getView().findViewById(R.id.txtViewFragment);  //UPDATE
-        txtViewResult.setText(showScore);
+        return showScore;
+    }
+
+    public String setPrecentText(){
+        int score = DBHelper.getScoreFromDB();
+        String showScore = score + " / " + Parser.dataList.size();
+        int percentage = (score/Parser.dataList.size())*100;
+        String percent = percentage + "%";
+        return  percent;
     }
 
     public void addListener(){
