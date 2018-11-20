@@ -5,7 +5,7 @@
     <string name="btnNext">NEXT</string>
     <string name="dbName">ICBC</string>
     <string name="dbVersion">1</string>
-    <string name="txtViewOptions">Select Resource For Practice Test</string>
+
     <string name="radBtnDatabase">Database</string>
     <string name="radBtnNetwork">Website</string>
     <string name="btnResChoice">START</string>
@@ -23,10 +23,11 @@
     <string name="hintPassword">Your Password Here...</string>
     <string name="hintEmail">Your Email-Id Here...</string>
     <string name="btnRegister">REGISTER</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello</string>
     <string name="descImgResult">Result Image</string>
+    <string name="descImgRegistration">Registration Image</string>
+    <string name="txtViewOptions">Select Resource For Test</string>
+    <string name="descImgLogin">Login Image</string>
 
 
 </resources>
