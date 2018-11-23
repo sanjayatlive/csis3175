@@ -20,14 +20,14 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:background="@drawable/fab_button_bg"
-        android:backgroundTint="@color/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/fab_button_bg"
+        android:backgroundTint="@color/icon"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,11 +38,9 @@
         app:srcCompat="@drawable/fab_submit" />
 
     <FrameLayout
+        android:id="@+id/frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:id="@+id/frame"
-        android:layout_margin="30dp"
-        />
+        android:layout_margin="30dp" />
 
 </android.support.constraint.ConstraintLayout>

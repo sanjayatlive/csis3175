@@ -24,22 +24,9 @@ public class DBHelper extends SQLiteOpenHelper {
     static Context ctx;
 
     public DBHelper(Context ctx) {
-  /*  SQLiteDatabase.OpenParams.Builder builder = new SQLiteDatabase.OpenParams.Builder();
-    builder.addOpenFlags(SQLiteDatabase.NO_LOCALIZED_COLLATORS);
-
-    SQLiteDatabase.OpenParams openParams = new SQLiteDatabase.OpenParams();
-
-   // SQLiteDatabase.OpenParams.Builder
-    super(ctx, ctx.getResources().getString(R.string.dbName)
-            , Integer.parseInt(ctx.getResources().getString(R.string.dbVersion))
-    , );*/
-
 
         super(ctx, ctx.getResources().getString(R.string.dbName), null, Integer.parseInt(ctx.getResources().getString(R.string.dbVersion)));
-        //setOpenParams();
-
         db = getReadableDatabase();
-
         this.ctx = ctx;
     }
 
@@ -65,10 +52,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
             String dropUsersTable = "DROP TABLE IF EXISTS USERS";
 
-
             String createQuestionsTable = "CREATE TABLE QUESTIONS " +
                     "(questionid numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
-
 
             String createProgressTable = "CREATE TABLE PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
@@ -78,35 +63,17 @@ public class DBHelper extends SQLiteOpenHelper {
 
             db.execSQL(dropQuestionsTable);
             db.execSQL(dropProgressTable);
-            // db.execSQL(dropUsersTable);
 
-
-          //  db.execSQL(createUsersTable);
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
-
             db.execSQL(createUsersTable);
 
-            //   Toast.makeText(ctx,"Tables Created", Toast.LENGTH_LONG).show();
-
         } catch (Exception e) {
-            //   Toast.makeText(ctx,e.getMessage(), Toast.LENGTH_LONG).show();
             Snackbar.make(((RegisterActivity) ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
 
         }
 
-
-      /*  try{
-            String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
-                    "(userid integer primary key autoincrement not null, username text, password text, email text);";
-            db.execSQL(createUsersTable);
-
-        }catch(Exception e){
-            Snackbar.make(((RegisterActivity)ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
-        }*/
-
     }
-
 
 
     public static void addQuestionsToDB(List<Item> dataList) {
@@ -125,32 +92,24 @@ public class DBHelper extends SQLiteOpenHelper {
             }
 
             if (result == -1) {
-                //    txtViewMessage.
-                //     Toast.makeText(ctx,"Questions couldn't be added", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((MainActivity) ctx).findViewById(R.id.constraintLayout), "Questions couldn't be added", Snackbar.LENGTH_LONG).show();
 
             } else {
-                // Toast.makeText(ctx,"Questions added", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((MainActivity) ctx).findViewById(R.id.constraintLayout), "Questions added", Snackbar.LENGTH_LONG).show();
-
-
             }
 
         } catch (Exception e) {
 
         }
-
     }
 
     public static int getQuestionsCountFromDB() {
 
-        int count=0;
+        int count = 0;
 
         String queryStr = "SELECT count(*) FROM QUESTIONS;";
         try {
             Cursor cur = db.rawQuery(queryStr, null);
-
-
             if (cur != null) {
                 cur.moveToFirst();
                 if (!cur.isAfterLast()) {
@@ -166,17 +125,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     public static List<Item> getQuestionsFromDB() {
 
         List<Item> dataList = new ArrayList<>();
@@ -185,8 +133,6 @@ public class DBHelper extends SQLiteOpenHelper {
         String queryStr = "SELECT * FROM QUESTIONS;";
         try {
             Cursor cur = db.rawQuery(queryStr, null);
-
-
             if (cur != null) {
                 cur.moveToFirst();
                 while (!cur.isAfterLast()) {
@@ -223,25 +169,12 @@ public class DBHelper extends SQLiteOpenHelper {
             cv.put("userid", 0);
             cv.put("questionid", questionId);
             cv.put("status", status);
-
-                /*cv.put("questionid",dataList.get(i).getId());
-                cv.put("question",dataList.get(i).getQuestion());
-                cv.put("answer",dataList.get(i).getAnswer());
-                cv.put("distractor1",dataList.get(i).getDistractor1());
-                cv.put("distractor2",dataList.get(i).getDistractor2());
-                cv.put("distractor3",dataList.get(i).getDistractor3());*/
             result = db.insert("PROGRESS", null, cv);
 
             if (result == -1) {
-                //    txtViewMessage.
                 Toast.makeText(ctx, "Answer couldn't be submitted", Toast.LENGTH_SHORT).show();
-                //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
-
             } else {
                 //   Toast.makeText(ctx,"Answer submitted successfully", Toast.LENGTH_SHORT).show();
-                // Snackbar.make(((MainActivity)ctx).findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
-
-
             }
 
         } catch (Exception e) {
@@ -253,13 +186,10 @@ public class DBHelper extends SQLiteOpenHelper {
     public static int getResultFromDB(int questionId) {
 
         int status = 0;
-
         String queryStr = "SELECT status FROM PROGRESS WHERE questionid = " + questionId + ";";
 
         try {
             Cursor cur = db.rawQuery(queryStr, null);
-
-
             if (cur != null) {
                 cur.moveToFirst();
                 if (!cur.isAfterLast())
@@ -271,8 +201,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return status;
-
-
     }
 
 
@@ -282,8 +210,6 @@ public class DBHelper extends SQLiteOpenHelper {
         int count = 0;
         try {
             Cursor cur = db.rawQuery(queryStr, null);
-
-
             if (cur != null) {
                 cur.moveToFirst();
                 if (!cur.isAfterLast())
@@ -297,14 +223,11 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-
-    public static long insertUserDataToDB(String username, String password, String email,Context regCtx) {
+    public static long insertUserDataToDB(String username, String password, String email, Context regCtx) {
         long result = 0;
         try {
 
             ContentValues cv;
-
-
             cv = new ContentValues();
             cv.put("username", username);
             cv.put("password", password);
@@ -312,17 +235,9 @@ public class DBHelper extends SQLiteOpenHelper {
             result = db.insert("USERS", null, cv);
 
             if (result == -1) {
-                //    txtViewMessage.
-               // Toast.makeText(ctx, "-1", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((RegisterActivity) regCtx).findViewById(R.id.regConstLayout), "Registration Unsuccessfull", Snackbar.LENGTH_LONG).show();
-                //   Snackbar.make(((DetailActivity)ctx).findViewById(R.id.constraintLayout), "Answer couldn't be submitted", Snackbar.LENGTH_LONG).show();
-
             } else {
-             //   Toast.makeText(ctx, "1", Toast.LENGTH_SHORT).show();
                 Snackbar.make(((RegisterActivity) regCtx).findViewById(R.id.regConstLayout), "Registration Successfull", Snackbar.LENGTH_LONG).show();
-                // Snackbar.make((this.findViewById(R.id.constraintLayout), "Answer submitted successfully", Snackbar.LENGTH_LONG).show();
-
-
             }
         } catch (Exception e) {
             Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -334,41 +249,23 @@ public class DBHelper extends SQLiteOpenHelper {
     public static int getLoginResultFromDB(String logUser, String logPass, Context logCtx) {
 
         int status = -1;
-        int dbstatus=-1;
+        int dbstatus = -1;
 
-        String queryStr = "SELECT userid FROM USERS WHERE lower(username) = lower('"+ logUser +"') AND password = '"+ logPass +"' ;";
-
+        String queryStr = "SELECT userid FROM USERS WHERE lower(username) = lower('" + logUser + "') AND password = '" + logPass + "' ;";
         System.out.println("<<<<<<<>>>>>>>>>>>>>" + queryStr);
 
         try {
             Cursor cur = db.rawQuery(queryStr, null);
-
-
-            /*if (cur != null) {
-                cur.moveToFirst();
-                if (!cur.isAfterLast()){
-                    dbstatus = cur.getInt(0);
-                    if(status==dbstatus)
-                        status=1;
-                }}*/
-
-
             if (cur != null) {
                 cur.moveToFirst();
                 if (!cur.isAfterLast())
                     status = cur.getInt(0);
             }
 
-
-
         } catch (Exception e) {
-           // Toast.makeText(ctx, e.getMessage(), Toast.LENGTH_SHORT).show();
             Snackbar.make(((ChoiceActivity) logCtx).findViewById(R.id.choiceConstraint), e.getMessage(), Snackbar.LENGTH_LONG).show();
-
         }
-
         return status;
-
     }
 
 }

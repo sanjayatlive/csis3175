@@ -6,9 +6,7 @@ import java.util.List;
 public class Item {
 
 
-
-
-    String question,answer,distractor1,distractor2,distractor3;
+    String question, answer, distractor1, distractor2, distractor3;
 
     int id, status;
 

@@ -25,12 +25,10 @@ public class FragmentResults extends Fragment {
     public static Fragment fr;
 
     @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         //Inflate the layout for this fragment
-        View view = inflater.inflate(
-                R.layout.fragment_fragment_results, container, false);
+        View view = inflater.inflate(R.layout.fragment_fragment_results, container, false);
         closeFab = (FloatingActionButton)view.findViewById(R.id.closeFab);
         txtViewResult = (TextView)view.findViewById(R.id.txtViewFragment);
         txtViewPercentage = (TextView)view.findViewById(R.id.txtViewPercentage);
@@ -60,18 +58,12 @@ public class FragmentResults extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>"+"close");
-             //   getActivity().onBackPressed();
-
                 FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
                 fragmentTransaction.remove(fr);
-               // fragmentTransaction.replace(R.id.frame, fr);
                 fragmentTransaction.commit();
-
                 RecyclerAdapter.isClickable = true;
 
             }
         });
     }
-
-
 }

@@ -21,9 +21,9 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-        btnSignIn=(Button)findViewById(R.id.btnSignIn);
-        btnSignUp=(Button)findViewById(R.id.btnSignUp);
-        btnGuest=(Button)findViewById(R.id.btnGuest);
+        btnSignIn = (Button) findViewById(R.id.btnSignIn);
+        btnSignUp = (Button) findViewById(R.id.btnSignUp);
+        btnGuest = (Button) findViewById(R.id.btnGuest);
 
         addListener();
         SharedPreferences pref;
@@ -34,7 +34,7 @@ public class SignInActivity extends AppCompatActivity {
         editor.commit();
     }
 
-    public void addListener(){
+    public void addListener() {
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override

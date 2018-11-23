@@ -26,7 +26,6 @@ public class ChoiceActivity extends AppCompatActivity {
     EditText editTxtLogPass;
     RadioGroup radGroupResOption;
     RadioButton radBtnNetwork, radBtnDatabase;
-    // DBHelper dbHelper;
     int status = 0;
     private static final int PASSWORD_LENGTH = 6;
 
@@ -35,7 +34,6 @@ public class ChoiceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //dbHelper = new DBHelper(this);
 
         TextView txtViewOptions = (TextView) findViewById(R.id.txtViewOptions);
         radGroupResOption = (RadioGroup) findViewById(R.id.radGroupResOption);
@@ -48,7 +46,7 @@ public class ChoiceActivity extends AppCompatActivity {
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = pref.edit();
 
-
+        //specific font to all text in activity
         Typeface font = Typeface.SANS_SERIF;
         txtViewOptions.setTypeface(font);
         radBtnDatabase.setTypeface(font);
@@ -62,37 +60,29 @@ public class ChoiceActivity extends AppCompatActivity {
 
     public void getDataFromDB() {
 
-        if(DBHelper.getQuestionsCountFromDB()==0){
+        if (DBHelper.getQuestionsCountFromDB() == 0) {
             radBtnDatabase.setEnabled(false);
-            System.out.println("getQuestionsCountFromDB=0" );
+            System.out.println("getQuestionsCountFromDB=0");
         }
-        System.out.println("getQuestionsCountFromDB" );
+        System.out.println("getQuestionsCountFromDB");
 
     }
 
 
-
-
     public void addListener() {
-
-
         btnResChoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-               if( checkCredentials()){
-                   if (radBtnNetwork.isChecked()) {
-                       editor.putInt("choice", 0);
-                   } else {
-                       editor.putInt("choice", 1);
-                   }
-                   editor.commit();
-                   Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
-                   startActivity(intent);
-               }
-
-
+                if (checkCredentials()) {
+                    if (radBtnNetwork.isChecked()) {
+                        editor.putInt("choice", 0);
+                    } else {
+                        editor.putInt("choice", 1);
+                    }
+                    editor.commit();
+                    Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -105,20 +95,17 @@ public class ChoiceActivity extends AppCompatActivity {
             String logPass = editTxtLogPass.getText().toString().trim();
             if (logUser.isEmpty() || logUser.equals(null) || logUser.length() == 0) {
                 Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Username", Snackbar.LENGTH_LONG).show();
-                flag=false;
+                flag = false;
             } else {
                 if (logPass.isEmpty() || logPass.equals(null) || logPass.length() == 0 || logPass.length() > PASSWORD_LENGTH) {
                     Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
-                    flag=false;
+                    flag = false;
                 } else {
                     // dbHelper = new DBHelper(this);
-                    if(DBHelper.getLoginResultFromDB(logUser, logPass, this)==-1){
-                        flag=false;
+                    if (DBHelper.getLoginResultFromDB(logUser, logPass, this) == -1) {
+                        flag = false;
                         Snackbar.make((this.findViewById(R.id.choiceConstraint)), "No Such User Found", Snackbar.LENGTH_LONG).show();
                     }
-                   // Toast.makeText(this, Integer.toString(status), Toast.LENGTH_SHORT).show();
-                    // Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
-                    //startActivity(intent);
                 }
             }
 

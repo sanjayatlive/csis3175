@@ -13,15 +13,16 @@ import com.icbc.nafiza.sanjay.icbc.R;
 import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
 
 public class SplashActivity extends AppCompatActivity {
+
     DBHelper dbHelper;
     private static int SPLASH_TIME_OUT = 2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_splash_activity);
         Animation myanimation = AnimationUtils.loadAnimation(this,R.anim.splashanimation);
-
 
 
         ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);

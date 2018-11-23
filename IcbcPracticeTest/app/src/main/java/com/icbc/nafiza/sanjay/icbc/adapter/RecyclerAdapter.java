@@ -19,8 +19,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Questi
     List<Item> questionList;
     Context ctx;
     RecyclerView recyclerView;
-   public static boolean isClickable = true;
-
+    public static boolean isClickable = true;
 
     public RecyclerAdapter(List<Item> questionList, Context ctx, RecyclerView recyclerView) {
         this.questionList = questionList;
@@ -41,8 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Questi
     @Override
     public void onBindViewHolder(@NonNull QuestionViewHolder questionViewHolder, int position) {
         questionViewHolder.txtViewItem.setText(questionList.get(position).getQuestion());
-        questionViewHolder.txtViewItemId.setText(ctx.getResources().getString(R.string.txtQuestionNo) + " "
-                + Integer.toString(questionList.get(position).getId()));
+        questionViewHolder.txtViewItemId.setText(ctx.getResources().getString(R.string.txtQuestionNo) + " "+ Integer.toString(questionList.get(position).getId()));
     }
 
     @Override
@@ -58,18 +56,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Questi
             if (isClickable) {
                 int itemPosition = recyclerView.getChildLayoutPosition(v);
                 Intent intent = new Intent(ctx, DetailActivity.class);
-
-            /*intent.putExtra("question", questionList.get(itemPosition).getQuestion());
-            intent.putExtra("answer", questionList.get(itemPosition).getAnswer());
-            intent.putExtra("dist1", questionList.get(itemPosition).getDistractor1());
-            intent.putExtra("dist2", questionList.get(itemPosition).getDistractor2());
-            intent.putExtra("dist3", questionList.get(itemPosition).getDistractor3());
-*/
                 intent.putExtra("questionId", questionList.get(itemPosition).getId());
-
                 ctx.startActivity(intent);
             }
-            //System.out.println("<<<<<<<<<<<ItemPos>>>>>>>>" + itemPosition);
         }
     };
 
@@ -81,9 +70,5 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Questi
             txtViewItem = (TextView) view.findViewById(R.id.txtViewItem);
             txtViewItemId = (TextView) view.findViewById(R.id.txtViewItemId);
         }
-
-
     }
-
-
 }

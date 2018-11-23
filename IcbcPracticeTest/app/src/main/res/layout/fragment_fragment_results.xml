@@ -7,7 +7,6 @@
     android:backgroundTint="#eeeeee"
     tools:context="com.icbc.nafiza.sanjay.icbc.fragments.FragmentResults">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/txtViewFragment"
         android:layout_width="match_parent"

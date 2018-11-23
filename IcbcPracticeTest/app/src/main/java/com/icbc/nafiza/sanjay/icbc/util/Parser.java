@@ -11,153 +11,105 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-public  class Parser {
+public class Parser {
 
-   public  static List<Item> dataList = new ArrayList<>();
+    public static List<Item> dataList = new ArrayList<>();
 
-   public static List<Item> parseIt(String response) throws Exception
-   {
+    public static List<Item> parseIt(String response) throws Exception {
 
-      String tag="";
-      // List<Item> list = new ArrayList<>();
-      Item item = new Item();
+        String tag = "";
+        Item item = new Item();
 
-      int id = 0;
+        int id = 0;
 
-      XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-      factory.setNamespaceAware(true);
-      XmlPullParser xpp = factory.newPullParser();
+        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        factory.setNamespaceAware(true);
+        XmlPullParser xpp = factory.newPullParser();
 
-      xpp.setInput( new StringReader( response ) );
-      int eventType = xpp.getEventType();
-      while (eventType != XmlPullParser.END_DOCUMENT) {
-         if(eventType == XmlPullParser.START_DOCUMENT) {
-            //    System.out.println("Start document");
-         } else if(eventType == XmlPullParser.START_TAG) {
+        xpp.setInput(new StringReader(response));
+        int eventType = xpp.getEventType();
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            if (eventType == XmlPullParser.START_DOCUMENT) {
+            } else if (eventType == XmlPullParser.START_TAG) {
+                if (xpp.getName().trim().equals("question")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    // System.out.println("insideqs");
+                } else if (xpp.getName().trim().equalsIgnoreCase("text")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    tag = "text";
+                } else if (xpp.getName().trim().equalsIgnoreCase("answer")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    tag = "answer";
+                } else if (xpp.getName().trim().equalsIgnoreCase("distractor_1")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    tag = "distractor_1";
+                } else if (xpp.getName().trim().equalsIgnoreCase("distractor_2")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    tag = "distractor_2";
+                } else if (xpp.getName().trim().equalsIgnoreCase("distractor_3")) {
+                    //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
+                    tag = "distractor_3";
+                } else if (xpp.getName().trim().equalsIgnoreCase("image")) {
+                    // tag = xpp.getName().trim();
+                    dataList.remove(dataList.size() - 1);
 
-            //  System.out.println("xpp.getName().trim()" + xpp.getName().trim());
+                } else {
+                    tag = xpp.getName().trim();
+                    // System.out.println("<<<<<<<othertags>>>>>" + tag);
+                }
+                //System.out.println("Start tag "+xpp.getName());
+            } else if (eventType == XmlPullParser.END_TAG) {
+                //System.out.println("End tag "+xpp.getName());
+            } else if (eventType == XmlPullParser.TEXT) {
+                //System.out.println("Text "+xpp.getText());
+                if (tag.equals("text")) {
+                    if (xpp.getText().toString().trim().length() != 0) {
+                        //  System.out.println(">>>>>>>insideqs" + xpp.getText().toString());
+                        item.setQuestion(xpp.getText().trim());
+                    }
+                } else if (tag.equals("answer")) {
+                    if (xpp.getText().toString().trim().length() != 0) {
+                        //  System.out.println(">>>>>>>answer" + xpp.getText().toString());
+                        item.setAnswer(xpp.getText().trim());
+                    }
+                } else if (tag.equals("distractor_1")) {
+                    if (xpp.getText().toString().trim().length() != 0) {
+                        item.setDistractor1(xpp.getText().trim());
+                        // System.out.println(">>>>>>>distractor_1" + xpp.getText().toString());
+                    }
+                } else if (tag.equals("distractor_2")) {
+                    if (xpp.getText().toString().trim().length() != 0) {
+                        item.setDistractor2(xpp.getText().trim());
+                    }
+                } else if (tag.equals("distractor_3")) {
+                    if (xpp.getText().toString().trim().length() != 0) {
+                        item.setDistractor3(xpp.getText().trim());
+                        dataList.add(item);
+                        // id++;
+                        item = new Item();
+                        // item.setId(id);
+                    }
 
-            if(xpp.getName().trim().equals("question")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-
-
-               // System.out.println("insideqs");
-            }
-
-
-            else if(xpp.getName().trim().equalsIgnoreCase("text")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-               tag = "text";
-            }
-            else if(xpp.getName().trim().equalsIgnoreCase("answer")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-               tag = "answer";
-            }
-            else if(xpp.getName().trim().equalsIgnoreCase("distractor_1")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-               tag = "distractor_1";
-            }
-            else if(xpp.getName().trim().equalsIgnoreCase("distractor_2")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-               tag = "distractor_2";
-            }
-            else if(xpp.getName().trim().equalsIgnoreCase("distractor_3")){
-               //System.out.println("<<<<<<<<<>>>>>>>>" +xpp.getName() );
-               tag = "distractor_3";
-            }else if(xpp.getName().trim().equalsIgnoreCase("image"))
-            {
-              // tag = xpp.getName().trim();
-                dataList.remove(dataList.size()-1);
-
-            }
-            else
-            {
-                tag = xpp.getName().trim();
-               // System.out.println("<<<<<<<othertags>>>>>" + tag);
-            }
-
-            //System.out.println("Start tag "+xpp.getName());
-         } else if(eventType == XmlPullParser.END_TAG) {
-            //System.out.println("End tag "+xpp.getName());
-         } else if(eventType == XmlPullParser.TEXT) {
-            //System.out.println("Text "+xpp.getText());
-
-            if(tag.equals("text"))
-            {
-
-               if(xpp.getText().toString().trim().length()!=0)
-               {
-                  //  System.out.println(">>>>>>>insideqs" + xpp.getText().toString());
-                  item.setQuestion(xpp.getText().trim());
-               }
-
-
-            }
-            else if(tag.equals("answer"))
-            {
-
-
-               if(xpp.getText().toString().trim().length()!=0)
-               {
-                  //  System.out.println(">>>>>>>answer" + xpp.getText().toString());
-                  item.setAnswer(xpp.getText().trim());
-               }
-
+                } else {
+                    // Log.d("<<<<<<<othertags>>>>>" , tag);
+                    //  System.out.println("<<<<<<<othertags>>>>>" + tag);
+                }
 
             }
-            else if(tag.equals("distractor_1"))
-            {
-               if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor1(xpp.getText().trim());
+            eventType = xpp.next();
+        }
+        // System.out.println("End document");
 
-                  // System.out.println(">>>>>>>distractor_1" + xpp.getText().toString());
-               }
-            }
-            else if(tag.equals("distractor_2"))
-            {
-               if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor2(xpp.getText().trim());
-               }
+        //  return list;
 
-            }
-            else if(tag.equals("distractor_3"))
-            {
-               if(xpp.getText().toString().trim().length()!=0) {
-                  item.setDistractor3(xpp.getText().trim());
-
-                  dataList.add(item);
-                 // id++;
-                  item = new Item();
-                 // item.setId(id);
-               }
-
-            }
-            else
-            {
-               // Log.d("<<<<<<<othertags>>>>>" , tag);
-              //  System.out.println("<<<<<<<othertags>>>>>" + tag);
-            }
-
-         }
-         eventType = xpp.next();
-      }
-      // System.out.println("End document");
-
-      //  return list;
-
-       setIds();
-
-return dataList;
-
-
-   }
-
-public static void setIds()
-{
-    for(int i=0;i<dataList.size();i++)
-    {
-        dataList.get(i).setId(i);
+        setIds();
+        return dataList;
     }
-}
+
+    public static void setIds() {
+        for (int i = 0; i < dataList.size(); i++) {
+            dataList.get(i).setId(i);
+        }
+    }
 
 }

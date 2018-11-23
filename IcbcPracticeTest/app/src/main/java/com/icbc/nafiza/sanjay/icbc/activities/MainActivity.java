@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     String responseglobal = "";
     Snackbar snackBar;
     RecyclerView recyclerView;
-    //  DBHelper dbHelper;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     FloatingActionButton fab;
@@ -48,41 +47,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//dataList = new ArrayList<>();
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
         recyclerView.addItemDecoration(new ItemDivider(this, LinearLayoutManager.VERTICAL, 16));
 
-        //  dbHelper = new DBHelper(this);
-
-
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        //  editor = pref.edit();
 
         int choice = pref.getInt("choice", 0);
 
         if (choice == 0) {
-            // dbHelper.createTables();
             getDataFromNetwork();
         } else {
             getDataFromDB();
             createRecyclerViewAndSetAdapter(recyclerView);
         }
 
-
         fab = (FloatingActionButton) findViewById(R.id.floatingActionButton);
-
-
         addListener();
-
         getIds();
-
     }
 
     public void getIds() {
@@ -96,10 +80,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent intent = new Intent(MainActivity.this, ResultActivity.class);
-                startActivity(intent);
-                finish();*/
-
                 frame.setVisibility(View.VISIBLE);
                 frame.setEnabled(true);
 
@@ -111,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
                 FragmentResults.fr = fr;
                 RecyclerAdapter.isClickable = false;
-
-
             }
         });
     }
@@ -125,10 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     Volley.fetchData(this, recyclerView);
                 } catch (Exception e) {
                     Snackbar.make(findViewById(R.id.constraintLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
-
                 }
-
-
             } else
 
             {
@@ -148,15 +123,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
             getDataFromNetwork();
-            // Code to undo the user's last action
         }
     }
 
     private boolean isNetworkAvailable() {
-        ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
@@ -172,8 +144,6 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerAdapter = new RecyclerAdapter(dataList, this, recyclerView);
         recyclerView.setAdapter(recyclerAdapter);
-
-
     }
 
 }

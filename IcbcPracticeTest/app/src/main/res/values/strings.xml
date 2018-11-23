@@ -5,14 +5,12 @@
     <string name="btnNext">NEXT</string>
     <string name="dbName">ICBC</string>
     <string name="dbVersion">1</string>
-
     <string name="radBtnDatabase">Database</string>
     <string name="radBtnNetwork">Website</string>
     <string name="btnResChoice">START</string>
     <string name="btnClose">CLOSE</string>
     <string name="txtViewResultText">Your Attempted Score Is</string>
     <string name="imgSplash">ICBC TEST</string>
-
     <string name="btnSignIn">Sign In</string>
     <string name="btnSignUp">Sign Up</string>
     <string name="btnGuest">Guest</string>
