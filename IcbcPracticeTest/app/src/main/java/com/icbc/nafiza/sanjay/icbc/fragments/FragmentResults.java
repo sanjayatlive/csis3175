@@ -2,8 +2,6 @@ package com.icbc.nafiza.sanjay.icbc.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -57,7 +55,6 @@ public class FragmentResults extends Fragment {
         closeFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>"+"close");
                 FragmentTransaction fragmentTransaction = getActivity().getFragmentManager().beginTransaction();
                 fragmentTransaction.remove(fr);
                 fragmentTransaction.commit();

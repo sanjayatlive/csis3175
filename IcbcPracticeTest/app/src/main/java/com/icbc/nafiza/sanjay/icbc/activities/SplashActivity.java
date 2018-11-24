@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 
 import com.icbc.nafiza.sanjay.icbc.R;
@@ -22,16 +20,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_splash_activity);
-        Animation myanimation = AnimationUtils.loadAnimation(this,R.anim.splashanimation);
 
-
-        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
 
         progressBar.getIndeterminateDrawable().setColorFilter(
                 Color.WHITE, android.graphics.PorterDuff.Mode.SRC_IN);
-
-    //    progressBar.setBackgroundResource(R.color.icon);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -44,9 +38,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-               Intent i = new Intent(SplashActivity.this, SignInActivity.class);
+                Intent i = new Intent(SplashActivity.this, SignInActivity.class);
 
-                 startActivity(i);
+                startActivity(i);
 
                 // close this activity
                 finish();
@@ -58,9 +52,7 @@ public class SplashActivity extends AppCompatActivity {
         dbHelper.createTables();
 
 
-
     }
-
 
 
 }

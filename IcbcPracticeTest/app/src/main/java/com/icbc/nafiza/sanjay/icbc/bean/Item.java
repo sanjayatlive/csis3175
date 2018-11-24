@@ -1,8 +1,5 @@
 package com.icbc.nafiza.sanjay.icbc.bean;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Item {
 
 

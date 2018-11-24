@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,7 +17,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.webkit.RenderProcessGoneDetail;
 import android.widget.FrameLayout;
 
 import com.icbc.nafiza.sanjay.icbc.R;
@@ -136,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     public void getDataFromDB() {
 
         dataList = DBHelper.getQuestionsFromDB();
-        System.out.println("sizefrogetDataFromDB" + dataList.size());
+
 
     }
 

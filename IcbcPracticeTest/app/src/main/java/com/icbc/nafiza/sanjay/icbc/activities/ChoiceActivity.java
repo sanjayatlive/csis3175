@@ -27,7 +27,7 @@ public class ChoiceActivity extends AppCompatActivity {
     RadioGroup radGroupResOption;
     RadioButton radBtnNetwork, radBtnDatabase;
     int status = 0;
-    private static final int PASSWORD_LENGTH = 6;
+    private static final int PASSWORD_LENGTH = 10;
 
 
     @Override
@@ -62,9 +62,9 @@ public class ChoiceActivity extends AppCompatActivity {
 
         if (DBHelper.getQuestionsCountFromDB() == 0) {
             radBtnDatabase.setEnabled(false);
-            System.out.println("getQuestionsCountFromDB=0");
+
         }
-        System.out.println("getQuestionsCountFromDB");
+
 
     }
 
@@ -76,12 +76,19 @@ public class ChoiceActivity extends AppCompatActivity {
                 if (checkCredentials()) {
                     if (radBtnNetwork.isChecked()) {
                         editor.putInt("choice", 0);
-                    } else {
+                        editor.commit();
+                        Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    } else if(radBtnDatabase.isChecked()){
                         editor.putInt("choice", 1);
+                        editor.commit();
+                        Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }else
+                    {
+                        Snackbar.make((ChoiceActivity.this.findViewById(R.id.choiceConstraint)), "Please select a resource", Snackbar.LENGTH_LONG).show();
                     }
-                    editor.commit();
-                    Intent intent = new Intent(ChoiceActivity.this, MainActivity.class);
-                    startActivity(intent);
+
                 }
             }
         });
@@ -101,10 +108,9 @@ public class ChoiceActivity extends AppCompatActivity {
                     Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Enter Valid Password", Snackbar.LENGTH_LONG).show();
                     flag = false;
                 } else {
-                    // dbHelper = new DBHelper(this);
                     if (DBHelper.getLoginResultFromDB(logUser, logPass, this) == -1) {
                         flag = false;
-                        Snackbar.make((this.findViewById(R.id.choiceConstraint)), "No Such User Found", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make((this.findViewById(R.id.choiceConstraint)), "Username and Password doesn't match", Snackbar.LENGTH_LONG).show();
                     }
                 }
             }

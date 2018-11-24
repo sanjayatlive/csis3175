@@ -2,10 +2,10 @@ package com.icbc.nafiza.sanjay.icbc.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
-import com.icbc.nafiza.sanjay.icbc.bean.Item;
 import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
 import com.icbc.nafiza.sanjay.icbc.util.Parser;
 
@@ -79,9 +78,14 @@ public class DetailActivity extends AppCompatActivity {
         if (status != 0) {
             btnNext.setVisibility(View.VISIBLE);
             btnSubmit.setVisibility(View.INVISIBLE);
+            radGrpDetail.setEnabled(false);
+            radBtnFirst.setEnabled(false);
+            radBtnSecond.setEnabled(false);
+            radBtnThird.setEnabled(false);
+            radBtnFourth.setEnabled(false);
         }
 
-        System.out.println("<<<<<<<<<<<InDetailOnC>>>>>>>>>>" + questionId + " " + Parser.dataList.size());
+
         if (questionId >= Parser.dataList.size() - 1) {
             btnNext.setText(getResources().getString(R.string.btnClose));
         }
@@ -107,8 +111,6 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (userChoice != null) {
-                    //  Toast.makeText(DetailActivity.this, userChoice, Toast.LENGTH_SHORT).show();
-                    //btnNext.setEnabled(true);
                     btnNext.setVisibility(View.VISIBLE);
                     btnSubmit.setVisibility(View.INVISIBLE);
 
@@ -119,7 +121,6 @@ public class DetailActivity extends AppCompatActivity {
 
                     DBHelper.addResponseToDB(questionId, status);
                     Snackbar.make(findViewById(R.id.constraintLayout), "Answer Submitted Successfully", Snackbar.LENGTH_SHORT).show();
-                    System.out.println("wow" + Parser.dataList.get(0).getAnswer());
 
                 } else {
                     Toast.makeText(DetailActivity.this, "Select atleast one option", Toast.LENGTH_SHORT).show();

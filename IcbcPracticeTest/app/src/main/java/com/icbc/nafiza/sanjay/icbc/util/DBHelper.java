@@ -145,10 +145,6 @@ public class DBHelper extends SQLiteOpenHelper {
                     item.setDistractor3(cur.getString(5));
                     dataList.add(item);
 
-                    System.out.println("<<<<QUESTIONS>>>>" + cur.getInt(0) +
-                            " " + cur.getString(1) + " " + cur.getString(2) + " " +
-                            cur.getString(3) + " " + cur.getString(4) + " "
-                            + cur.getString(5) + " ");
                     cur.moveToNext();
                 }
             }
@@ -173,8 +169,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
             if (result == -1) {
                 Toast.makeText(ctx, "Answer couldn't be submitted", Toast.LENGTH_SHORT).show();
-            } else {
-                //   Toast.makeText(ctx,"Answer submitted successfully", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
@@ -249,10 +243,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public static int getLoginResultFromDB(String logUser, String logPass, Context logCtx) {
 
         int status = -1;
-        int dbstatus = -1;
 
         String queryStr = "SELECT userid FROM USERS WHERE lower(username) = lower('" + logUser + "') AND password = '" + logPass + "' ;";
-        System.out.println("<<<<<<<>>>>>>>>>>>>>" + queryStr);
 
         try {
             Cursor cur = db.rawQuery(queryStr, null);

@@ -1,11 +1,9 @@
 package com.icbc.nafiza.sanjay.icbc.activities;
 
-import android.content.ContentValues;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     String password;
     String email;
 
-    private static final int PASSWORD_LENGTH = 6;
+    private static final int PASSWORD_LENGTH = 10;
     private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
 
     @Override
