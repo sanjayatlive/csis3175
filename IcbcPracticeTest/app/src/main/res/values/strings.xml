@@ -27,6 +27,7 @@
     <string name="txtViewOptions">Select Resource For Practice Test</string>
     <string name="descImgLogin">Login Image</string>
     <string name="descImgWelcome">Welcome To ICBC</string>
+    <string name="answer">Answer</string>
 
 
 </resources>

@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,8 @@ public class DetailActivity extends AppCompatActivity {
     int questionId;
     int status = 0;
     ConstraintLayout constraintLayout;
+    int answer=0;
+    RadioButton radBtnFirst,radBtnSecond,radBtnThird,radBtnFourth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +40,10 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView txtViewQuesDetail = (TextView) findViewById(R.id.txtViewQuesDetail);
         radGrpDetail = (RadioGroup) findViewById(R.id.radGrpDetail);
-        RadioButton radBtnFirst = (RadioButton) findViewById(R.id.radBtnFirst);
-        RadioButton radBtnSecond = (RadioButton) findViewById(R.id.radBtnSecond);
-        RadioButton radBtnThird = (RadioButton) findViewById(R.id.radBtnThird);
-        RadioButton radBtnFourth = (RadioButton) findViewById(R.id.radBtnFourth);
+        radBtnFirst = (RadioButton) findViewById(R.id.radBtnFirst);
+        radBtnSecond = (RadioButton) findViewById(R.id.radBtnSecond);
+        radBtnThird = (RadioButton) findViewById(R.id.radBtnThird);
+        radBtnFourth = (RadioButton) findViewById(R.id.radBtnFourth);
         btnSubmit = (Button) findViewById(R.id.btnSubmit);
         btnNext = (Button) findViewById(R.id.btnNext);
 
@@ -57,6 +60,8 @@ public class DetailActivity extends AppCompatActivity {
 
 
         Collections.shuffle(options);
+
+        answer = options.indexOf(Parser.dataList.get(questionId).getAnswer());
 
         radBtnFirst.setText(options.get(0));
         radBtnSecond.setText(options.get(1));
@@ -78,11 +83,8 @@ public class DetailActivity extends AppCompatActivity {
         if (status != 0) {
             btnNext.setVisibility(View.VISIBLE);
             btnSubmit.setVisibility(View.INVISIBLE);
-            radGrpDetail.setEnabled(false);
-            radBtnFirst.setEnabled(false);
-            radBtnSecond.setEnabled(false);
-            radBtnThird.setEnabled(false);
-            radBtnFourth.setEnabled(false);
+            disableRadioButtons();
+            changeColor();
         }
 
 
@@ -93,6 +95,26 @@ public class DetailActivity extends AppCompatActivity {
         addListener();
     }
 
+
+    public void changeColor()
+    {
+        switch (answer)
+        {
+            case 0:radBtnFirst.setTextColor(getResources().getColor(R.color.green));break;
+            case 1:radBtnSecond.setTextColor(getResources().getColor(R.color.green));break;
+            case 2:radBtnThird.setTextColor(getResources().getColor(R.color.green));break;
+            case 3:radBtnFourth.setTextColor(getResources().getColor(R.color.green));break;
+        }
+    }
+
+    public void disableRadioButtons()
+    {
+        radGrpDetail.setEnabled(false);
+        radBtnFirst.setEnabled(false);
+        radBtnSecond.setEnabled(false);
+        radBtnThird.setEnabled(false);
+        radBtnFourth.setEnabled(false);
+    }
 
     public void addListener() {
         radGrpDetail.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -119,9 +141,10 @@ public class DetailActivity extends AppCompatActivity {
                     else
                         status = -1;
 
+                    disableRadioButtons();
                     DBHelper.addResponseToDB(questionId, status);
                     Snackbar.make(findViewById(R.id.constraintLayout), "Answer Submitted Successfully", Snackbar.LENGTH_SHORT).show();
-
+                    changeColor();
                 } else {
                     Toast.makeText(DetailActivity.this, "Select atleast one option", Toast.LENGTH_SHORT).show();
                 }
