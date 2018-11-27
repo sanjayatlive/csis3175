@@ -41,36 +41,46 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public void dropTables()
+    {
+        db = getReadableDatabase();
+        try {
+            String dropQuestionsTable = "DROP TABLE IF EXISTS QUESTIONS";
+
+            String dropProgressTable = "DROP TABLE IF EXISTS PROGRESS";
+
+            db.execSQL(dropQuestionsTable);
+            db.execSQL(dropProgressTable);
+        }
+        catch (Exception e)
+        {
+            Log.d("error dropTables", e.getMessage());
+        }
+    }
+
     public void createTables() {
 
         db = getReadableDatabase();
 
         try {
 
-            String dropQuestionsTable = "DROP TABLE IF EXISTS QUESTIONS";
-
-            String dropProgressTable = "DROP TABLE IF EXISTS PROGRESS";
-
-            String dropUsersTable = "DROP TABLE IF EXISTS USERS";
-
-            String createQuestionsTable = "CREATE TABLE QUESTIONS " +
+            String createQuestionsTable = "CREATE TABLE IF NOT EXISTS QUESTIONS " +
                     "(questionid numeric,question text, answer text, distractor1 text,distractor2 text,distractor3 text);";
 
-            String createProgressTable = "CREATE TABLE PROGRESS " +
+            String createProgressTable = "CREATE TABLE IF NOT EXISTS PROGRESS " +
                     "(userid numeric, questionid numeric, status numeric);";
 
             String createUsersTable = "CREATE TABLE IF NOT EXISTS USERS " +
                     "(userid integer primary key autoincrement not null, username text, password text, email text);";
 
-            db.execSQL(dropQuestionsTable);
-            db.execSQL(dropProgressTable);
+
 
             db.execSQL(createQuestionsTable);
             db.execSQL(createProgressTable);
             db.execSQL(createUsersTable);
 
         } catch (Exception e) {
-            Log.d("error", e.getMessage());
+            Log.d("error createTables", e.getMessage());
         }
 
     }

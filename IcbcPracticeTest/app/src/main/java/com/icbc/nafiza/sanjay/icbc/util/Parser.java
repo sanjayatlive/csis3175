@@ -17,6 +17,7 @@ public class Parser {
 
         String tag = "";
         Item item = new Item();
+        dataList.clear();
 
         int id = 0;
 

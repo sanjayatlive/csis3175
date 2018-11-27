@@ -25,6 +25,7 @@ import com.icbc.nafiza.sanjay.icbc.adapter.RecyclerAdapter;
 import com.icbc.nafiza.sanjay.icbc.bean.Item;
 import com.icbc.nafiza.sanjay.icbc.fragments.FragmentResults;
 import com.icbc.nafiza.sanjay.icbc.util.DBHelper;
+import com.icbc.nafiza.sanjay.icbc.util.Parser;
 import com.icbc.nafiza.sanjay.icbc.util.Volley;
 
 import java.util.List;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (choice == 0) {
             dbHelper = new DBHelper(this);
+            dbHelper.dropTables();
             dbHelper.createTables();
             getDataFromNetwork();
         } else {
@@ -137,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     public void getDataFromDB() {
 
         dataList = DBHelper.getQuestionsFromDB();
+        Parser.dataList=dataList;
 
 
     }
