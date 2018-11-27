@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.icbc.nafiza.sanjay.icbc.R;
@@ -69,8 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
             db.execSQL(createUsersTable);
 
         } catch (Exception e) {
-            Snackbar.make(((RegisterActivity) ctx).findViewById(R.id.regConstLayout), e.getMessage(), Snackbar.LENGTH_LONG).show();
-
+            Log.d("error", e.getMessage());
         }
 
     }

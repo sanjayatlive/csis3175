@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fab;
     FrameLayout frame;
     RecyclerAdapter recyclerAdapter;
+    DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         int choice = pref.getInt("choice", 0);
 
         if (choice == 0) {
+            dbHelper = new DBHelper(this);
+            dbHelper.createTables();
             getDataFromNetwork();
         } else {
             getDataFromDB();
